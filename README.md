@@ -1,7 +1,6 @@
 # LZRR
 LZRR(LZ77 with right reference) is a lossless compression algoirthm whose output file is represented by a bidirectional(macro) scheme. 
-The bidirectional scheme represents a text by factors 
-whose each factor is a character or a substring represented by a pointer to another occurrence of the substring.  
+The bidirectional scheme represents a text by factors whose each factor is a character or a substring represented by a pointer to another occurrence of the substring.  
 LZRR factorizes a given text T left-to-right choosing the longest substring as new factor. 
 The number of the factors is smaller than or equal to the number of factors in LZ77 factorization of the reverse text of T. 
 
@@ -55,6 +54,7 @@ You need libdivsufsort(https://github.com/y-256/libdivsufsort) to excecute this 
     Text     : aaaaabbbababbababbabbababababababbbbb
     Factors  : aaaa|abbb|ababbab|abbab|bababababab|a|bbbb|b|
     Pointers : [1, 4],[31, 4],[13, 7],[18, 5],[22, 11],a,[33, 4],b
+    /* the factor representing a substring is encoded to [the starting position of another occurrence of the substring, the length of the substring] */
     =============RESULT===============
     File : ./examples/text1.lzrr
     Output : ./examples/text1.lzrr.log
@@ -107,8 +107,7 @@ You need libdivsufsort(https://github.com/y-256/libdivsufsort) to excecute this 
     Excecution time : 2ms[18.5chars/ms]
     ==================================
 
-    Constructing Dependency Array : [4/37]
-    Decompressing the compressed text : [0/37]
+    $ ./decompress.out -i ./examples/text1.lzrr
     =============RESULT===============
     File : ./examples/text1.lzrr
     Output : ./examples/text1.lzrr.txt
