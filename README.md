@@ -1,7 +1,7 @@
 # LZRR
 LZRR(LZ77 with right reference) is a lossless compression algoirthm whose output file is represented by a bidirectional(macro) scheme. 
 The bidirectional scheme represents a text by factors whose each factor is a character or a substring represented by a pointer to another occurrence of the substring.  
-LZRR factorizes a given text T left-to-right choosing the longest substring as new factor. 
+LZRR factorizes a given text T left-to-right choosing the longest substring which does not create a circular reference as new factor. 
 The number of the factors is smaller than or equal to the number of factors in LZ77 factorization of the reverse text of T. 
 
 This is implementations of LZRR, lex-parse~(https://arxiv.org/abs/1803.09517), and LZ77. 
