@@ -1,8 +1,82 @@
 #include "lnf_array.hpp"
 
 namespace stool{
+        LNFInfo::LNFInfo(SINDEX _begin, SINDEX _end, uint64_t upperLCP, uint64_t lowerLCP)
+    {
+        this->begin = _begin;
+        this->end = _end;
+
+        if (this->begin != UINT64_MAX && this->end != UINT64_MAX)
+        {
+            if (upperLCP > lowerLCP)
+            {
+                this->isBeg = true;
+                this->lcp = upperLCP;
+            }
+            else
+            {
+                this->isBeg = false;
+                this->lcp = lowerLCP;
+            }
+        }
+        else if (this->begin != UINT64_MAX)
+        {
+            this->isBeg = true;
+            this->lcp = upperLCP;
+        }
+        else if (this->end != UINT64_MAX)
+        {
+            this->isBeg = false;
+            this->lcp = lowerLCP;
+        }
+        else
+        {
+            this->lcp = 0;
+        }
+    }
+    TINDEX LNFInfo::reference(vector<uint64_t> &sa)
+    {
+        if (this->isBeg)
+        {
+            if (this->begin < sa.size())
+            {
+                return sa[this->begin];
+            }
+            else
+            {
+                return UINT64_MAX;
+            }
+        }
+        else
+        {
+            if (this->end < sa.size())
+            {
+                return sa[this->end];
+            }
+            else
+            {
+                return UINT64_MAX;
+            }
+        }
+    }
+uint64_t LNFInfo::getArea()
+    {
+        int64_t _beg = this->begin == UINT64_MAX ? 0 : this->begin;
+        int64_t tate = (this->end - _beg - 2);
+        if (tate <= 0)
+        {
+            return 0;
+        }
+        else
+        {
+            int64_t pSize = tate * (this->lcp + 1);
+            return pSize;
+        }
+    }
 namespace LNF
 {
+
+
 void computeLNFArray(string &text, vector<uint64_t> &sa, vector<uint64_t> &lcpArr, uint64_t threshold, vector<TINDEX> &output)
 {
     uint64_t n = sa.size();

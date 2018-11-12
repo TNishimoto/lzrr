@@ -83,6 +83,13 @@ void checkFile(string &text, string filename)
 
 int main(int argc, char *argv[])
 {
+    #ifdef DEBUG
+    std::cout << "\033[41m";
+    std::cout << "DEBUG MODE!" << std::endl;
+    std::cout << "\e[m" << std::endl;
+    //std::cout << "\033[30m" << std::endl;
+
+    #endif
     cmdline::parser p;
     p.add<string>("input_file", 'i', "input file name", true);
     p.add<string>("output_file", 'o', "output file name (the default output name is 'input_file.ext')", false, "");

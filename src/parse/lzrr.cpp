@@ -1,8 +1,10 @@
 
 #include "lzrr.hpp"
 #include "debug/print.hpp"
+#include "lp.hpp"
 
-namespace stool{
+namespace stool
+{
 void LZRR::initialize(uint64_t _threshold, bool usingLCPArray, bool usingDependArray)
 {
     constructSA(*this->text, this->sa, this->isa);
@@ -84,9 +86,9 @@ void LZRR::compress(LZWriter &writer)
     }
     std::cout << std::endl;
 }
+/*
 std::pair<SINDEX, uint64_t> LZRR::getLongestOccurrence(SINDEX i, vector<uint64_t> *lcpArr, DependencyArrayManager &depper, vector<uint64_t> &sa, vector<uint64_t> &isa, string &text)
 {
-
     uint64_t n = sa.size();
     uint64_t lfLength = 0;
     SINDEX index = UINT64_MAX;
@@ -113,6 +115,7 @@ std::pair<SINDEX, uint64_t> LZRR::getLongestOccurrence(SINDEX i, vector<uint64_t
 
         uint64_t factorLength = lowerLCP <= upperLCP ? upperLCP : lowerLCP;
         y = lowerLCP <= upperLCP ? upperIndex : lowerIndex;
+
 
         f = MSFactor(sa[i], sa[y], factorLength);
 
@@ -146,7 +149,52 @@ std::pair<SINDEX, uint64_t> LZRR::getLongestOccurrence(SINDEX i, vector<uint64_t
             lowerLCP = lowerIndex == n ? 0 : lcpArr == NULL ? stool::StringFunctions::LCE(text, sa[i], sa[lowerIndex]) : (*lcpArr)[lowerIndex] < lowerLCP ? (*lcpArr)[lowerIndex] : lowerLCP;
         }
     }
-
     return std::pair<SINDEX, uint64_t>(index, lfLength);
 }
+*/
+
+
+
+std::pair<SINDEX, uint64_t> LZRR::getLongestOccurrence(SINDEX i, vector<uint64_t> *lcpArr, DependencyArrayManager &depper, vector<uint64_t> &sa, vector<uint64_t> &isa, string &text)
+{
+    LPIterater lpi = LPIterater(i, &sa, &isa, lcpArr);
+    uint64_t n = sa.size();
+    uint64_t lfLength = 0;
+    SINDEX index = UINT64_MAX;
+
+    while (true)
+    {
+        uint64_t nowLF = 0;
+        std::pair<SINDEX, uint64_t> candidate = lpi.take();
+        uint64_t lcp = candidate.second;
+        uint64_t y = candidate.first;
+        if (lfLength >= lcp)
+        {
+            break;
+        }
+
+        MSFactor f = MSFactor(sa[i], sa[y], lcp);
+        if (f.reference > f.index)
+        {
+            nowLF = f.length;
+        }
+        else
+        {
+            uint64_t fakeLen = depper.getFakeLCPWR(f);
+
+            if (fakeLen > lfLength)
+            {
+                nowLF = depper.getLCPWR(f);
+            }
+        }
+        if (lfLength < nowLF)
+        {
+            lfLength = nowLF;
+            index = y;
+        }
+    }
+    return std::pair<SINDEX, uint64_t>(index, lfLength);
 }
+
+
+} // namespace stool

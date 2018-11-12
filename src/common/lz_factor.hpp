@@ -10,6 +10,10 @@
 using namespace std;
 
 namespace stool{
+
+/*
+This class represents the factor of LZ77.
+*/
 class LZFactor
 {
   public:
@@ -46,7 +50,9 @@ uint64_t getLength(){
     static void decompress(vector<LZFactor> &factors, string &output);
     //static void decompress(vector<LZFactor> &factors, string &output, bool allowRightReference);
 };
-
+/*
+This class represents the factor of Macro scheme.
+*/
 class MSFactor{
     public:
     uint64_t index;

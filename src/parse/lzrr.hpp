@@ -5,6 +5,7 @@
 #include "union_find.hpp"
 #include "dependency_array.hpp"
 #include "lnf_array.hpp"
+#include "lp.hpp"
 
 using namespace std;
 
