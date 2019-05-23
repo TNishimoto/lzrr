@@ -11,12 +11,31 @@ the suffix array, inverse suffix array, and LCP array of the input text.
 All output files in this liblary are represented by bidirectional schemes. 
 They use b * 16 bytes, where b is the number of factors.
 
-# download and compile
-    $ git clone https://github.com/TNishimoto/lzrr
-    $ cd lzrr  
-    $ cmake -DCMAKE_BUILD_TYPE=Release .
+# download
 
-You need libdivsufsort(https://github.com/y-256/libdivsufsort) to excecute this program.
+> $ git clone https://github.com/TNishimoto/lzrr
+
+# compile
+
+This program uses libdivsufsort library, and hence you need following four files:  
+lzrr/include/libdivsufsort.h, lzrr/include/libdivsufsort64.h, lzrr/lib/libdivsufsort.a, and lzrr/lib/libdivsufsort64.a  
+To create the four files, please excecute following comamnds.  
+
+> cd lzrr  
+> git clone https://github.com/TNishimoto/libdivsufsort.git  
+> cd libdivsufsort  
+> mkdir build  
+> cd build  
+> cmake -DCMAKE_BUILD_TYPE="Release" -DCMAKE_INSTALL_PREFIX="../../" ..  
+> make  
+> make install  
+
+After you create libdivsufsort library, please excecute following commands in lzrr directory to compile this program by cmake.  
+
+> mkdir build  
+> cd build  
+> cmake -DCMAKE_BUILD_TYPE=Release ..  
+> make  
 
 # executions
 
@@ -40,7 +59,7 @@ You need libdivsufsort(https://github.com/y-256/libdivsufsort) to excecute this 
 
 ## examples
 
-    $ ./compress.out -i ./examples/text1 -m lzrr
+    $ ./compress.out -i ../examples/text1 -m lzrr
     =============RESULT===============
     File : ./examples/text1
     Output : ./examples/text1.lzrr
@@ -50,7 +69,7 @@ You need libdivsufsort(https://github.com/y-256/libdivsufsort) to excecute this 
     Excecution time : 2ms[18.5chars/ms]
     ==================================
 
-    $ ./decompress.out -i ./examples/text1.lzrr -e 1
+    $ ./decompress.out -i ../examples/text1.lzrr -e 1
     Text     : aaaaabbbababbababbabbababababababbbbb
     Factors  : aaaa|abbb|ababbab|abbab|bababababab|a|bbbb|b|
     Pointers : [1, 4],[31, 4],[13, 7],[18, 5],[22, 11],a,[33, 4],b
@@ -63,7 +82,7 @@ You need libdivsufsort(https://github.com/y-256/libdivsufsort) to excecute this 
     Excecution time : 0ms[infchars/ms]
     ==================================
 
-    $ ./compress.out -i ./examples/text1 -m lz
+    $ ./compress.out -i ../examples/text1 -m lz
     =============RESULT===============
     File : ./examples/text1
     Output : ./examples/text1.lz
@@ -73,7 +92,7 @@ You need libdivsufsort(https://github.com/y-256/libdivsufsort) to excecute this 
     Excecution time : 1ms[37chars/ms]
     ==================================
 
-    $ ./decompress.out -i ./examples/text1.lz -e 1
+    $ ./decompress.out -i ../examples/text1.lz -e 1
     Text     : aaaaabbbababbababbabbababababababbbbb
     Factors  : a|aaaa|b|bb|ab|abb|ababbab|babab|abababab|bbbb|
     Pointers : a,[0, 4],b,[5, 2],[4, 2],[4, 3],[8, 7],[7, 5],[23, 8],[32, 4]
@@ -85,7 +104,7 @@ You need libdivsufsort(https://github.com/y-256/libdivsufsort) to excecute this 
     Excecution time : 2ms[18.5chars/ms]
     ==================================
 
-    $ ./compress.out -i ./examples/text1 -m lex
+    $ ./compress.out -i ../examples/text1 -m lex
     =============RESULT===============
     File : ./examples/text1
     Output : ./examples/text1.lex
@@ -95,7 +114,7 @@ You need libdivsufsort(https://github.com/y-256/libdivsufsort) to excecute this 
     Excecution time : 2ms[18.5chars/ms]
     ==================================
 
-    $ ./decompress.out -i ./examples/text1.lex -e 1
+    $ ./decompress.out -i ../examples/text1.lex -e 1
     Text     : aaaaabbbababbababbabbababababababbbbb
     Factors  : a|aaaa|bbb|abab|bababbab|b|a|bababababab|bbb|b|
     Pointers : a,[0, 4],[34, 3],[27, 4],[7, 8],[36, 1],[3, 1],[20, 11],[5, 3],b
@@ -107,7 +126,7 @@ You need libdivsufsort(https://github.com/y-256/libdivsufsort) to excecute this 
     Excecution time : 2ms[18.5chars/ms]
     ==================================
 
-    $ ./decompress.out -i ./examples/text1.lzrr
+    $ ./decompress.out -i ../examples/text1.lzrr
     =============RESULT===============
     File : ./examples/text1.lzrr
     Output : ./examples/text1.lzrr.txt

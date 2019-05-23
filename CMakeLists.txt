@@ -14,10 +14,13 @@ INCLUDE_DIRECTORIES(src/common)
 INCLUDE_DIRECTORIES(src/debug)
 INCLUDE_DIRECTORIES(src/parse)
 
+LINK_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/lib)
+INCLUDE_DIRECTORIES(./include)
+
 FILE(GLOB SOURCES src/*.cpp src/common/*.cpp src/parse/*.cpp src/debug/*.cpp)
 
-LINK_DIRECTORIES(~/lib)
-include_directories(~/include)
+#LINK_DIRECTORIES(~/lib)
+#include_directories(~/include)
 
 add_library(fn STATIC ${SOURCES})
 target_link_libraries(fn divsufsort divsufsort64)
