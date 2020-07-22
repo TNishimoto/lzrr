@@ -11,31 +11,24 @@ the suffix array, inverse suffix array, and LCP array of the input text.
 All output files in this liblary are represented by bidirectional schemes. 
 They use b * 16 bytes, where b is the number of factors.
 
-# download
 
-> $ git clone https://github.com/TNishimoto/lzrr
+# download
+The source codes in 'module' directory are maintained in different repositories. 
+So, to download all the necessary source codes, do the following:
+
+> git clone https://github.com/TNishimoto/lzrr.git  
+> cd lzrr  
+> git submodule init  
+> git submodule update  
+
 
 # compile
-
-This program uses libdivsufsort library, and hence you need following four files:  
-lzrr/include/libdivsufsort.h, lzrr/include/libdivsufsort64.h, lzrr/lib/libdivsufsort.a, and lzrr/lib/libdivsufsort64.a  
-To create the four files, please excecute following comamnds.  
-
-> cd lzrr  
-> git clone https://github.com/TNishimoto/libdivsufsort.git  
-> cd libdivsufsort  
-> mkdir build  
-> cd build  
-> cmake -DCMAKE_BUILD_TYPE="Release" -DCMAKE_INSTALL_PREFIX="../../" ..  
-> make  
-> make install  
-
-After you create libdivsufsort library, please excecute following commands in lzrr directory to compile this program by cmake.  
 
 > mkdir build  
 > cd build  
 > cmake -DCMAKE_BUILD_TYPE=Release ..  
 > make  
+
 
 # executions
 

@@ -19,6 +19,13 @@ INCLUDE_DIRECTORIES(./include)
 
 FILE(GLOB SOURCES src/*.cpp src/common/*.cpp src/parse/*.cpp src/debug/*.cpp)
 
+#### Modules
+set(MYMOD_SOURCE_DIR ${CMAKE_SOURCE_DIR}/module)
+set(MYMOD_BINARY_DIR ${CMAKE_BINARY_DIR}/module)
+add_subdirectory(${MYMOD_SOURCE_DIR}/libdivsufsort ${MYMOD_BINARY_DIR}/libdivsufsort)
+include_directories(${MYMOD_BINARY_DIR}/libdivsufsort/include)
+
+
 #LINK_DIRECTORIES(~/lib)
 #include_directories(~/include)
 
