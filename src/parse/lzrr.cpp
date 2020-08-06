@@ -159,41 +159,41 @@ std::pair<SINDEX, uint64_t> LZRR::getLongestOccurrence(SINDEX i, vector<uint64_t
 {
     LPIterater lpi = LPIterater(i, &sa, &isa, lcpArr);
     uint64_t n = sa.size();
-    uint64_t lfLength = 0;
+    uint64_t longestFactorLength = 0;
     SINDEX index = UINT64_MAX;
 
     while (true)
     {
-        uint64_t nowLF = 0;
+        uint64_t jFactorLength = 0;
         std::pair<SINDEX, uint64_t> candidate = lpi.take();
         uint64_t lcp = candidate.second;
-        uint64_t y = candidate.first;
-        if (lfLength >= lcp)
+        uint64_t j = candidate.first;
+        if (longestFactorLength >= lcp)
         {
             break;
         }
 
-        MSFactor f = MSFactor(sa[i], sa[y], lcp);
+        MSFactor f = MSFactor(sa[i], sa[j], lcp);
         if (f.reference > f.index)
         {
-            nowLF = f.length;
+            jFactorLength = f.length;
         }
         else
         {
             uint64_t fakeLen = depper.getFakeLCPWR(f);
 
-            if (fakeLen > lfLength)
+            if (fakeLen > longestFactorLength)
             {
-                nowLF = depper.getLCPWR(f);
+                jFactorLength = depper.getLCPWR(f);
             }
         }
-        if (lfLength < nowLF)
+        if (longestFactorLength < jFactorLength)
         {
-            lfLength = nowLF;
-            index = y;
+            longestFactorLength = jFactorLength;
+            index = j;
         }
     }
-    return std::pair<SINDEX, uint64_t>(index, lfLength);
+    return std::pair<SINDEX, uint64_t>(index, longestFactorLength);
 }
 
 
