@@ -14,8 +14,9 @@ class LPIterater
     uint64_t upperLCP;
     uint64_t n;
 
-    public:
-    LPIterater(SINDEX _i, std::vector<uint64_t> *_sa, std::vector<uint64_t> *_isa, std::vector<uint64_t> *_lcpArr){
+public:
+    LPIterater(SINDEX _i, std::vector<uint64_t> *_sa, std::vector<uint64_t> *_isa, std::vector<uint64_t> *_lcpArr)
+    {
         this->i = _i;
         this->sa = _sa;
         this->isa = _isa;
@@ -34,7 +35,10 @@ class LPIterater
 
         int64_t nextLowerLCP = lowerNextIndex >= n ? -1 : (*lcpArr)[lowerNextIndex] < lowerLCP ? (*lcpArr)[lowerNextIndex] : lowerLCP;
         int64_t nextUpperLCP = upperNextIndex < 0 ? -1 : (*lcpArr)[upperNextIndex + 1] < upperLCP ? (*lcpArr)[upperNextIndex + 1] : upperLCP;
-        if (nextUpperLCP >= nextLowerLCP)
+        uint64_t upperDist = this->i - upperNextIndex;
+        uint64_t lowerDist = lowerNextIndex - this->i;
+
+        if (nextUpperLCP > nextLowerLCP || (nextUpperLCP == nextLowerLCP && upperDist <= lowerDist))
         {
             upperIndex = upperNextIndex;
             upperLCP = (uint64_t)nextUpperLCP;
@@ -47,10 +51,14 @@ class LPIterater
             return std::pair<SINDEX, uint64_t>(lowerIndex, lowerLCP);
         }
     }
-    bool end(){
-        if(this->lowerIndex == n - 1 && this->upperIndex == 0){
+    bool end()
+    {
+        if (this->lowerIndex == n - 1 && this->upperIndex == 0)
+        {
             return true;
-        }else{
+        }
+        else
+        {
             return false;
         }
     }
