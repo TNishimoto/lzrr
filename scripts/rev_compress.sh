@@ -12,17 +12,17 @@ filearr=( "fib41" "rs.13" "tm29" "dblp.xml.00001.1" "dblp.xml.00001.2"
 
 for file in ${filearr[@]}; do
 	echo "lzrr ${file}"
-    nohup /usr/bin/time -f "#lzrr ${file}, %e sec, %M KB" ~/lzrr/build/compress.out -i ${folderpath}/${file} -o ${outputpath1}/${file}.lzrr -m lzrr >> /mnt/server/nishimoto/result/lzrr_output.log
+    nohup /usr/bin/time -f "#lzrr ${file}, %e sec, %M KB" ~/lzrr/build/compress.out -i ${folderpath}/${file} -o ${outputpath1}/${file}.rev.lzrr -m lzrr -r 1 >> /mnt/server/nishimoto/result/lzrr_output.log
 done
 
 for file in ${filearr[@]}; do
 	echo "lz77 ${file}"
-    nohup /usr/bin/time -f "#lz77 ${file}, %e sec, %M KB" ~/lzrr/build/compress.out -i ${folderpath}/${file} -o ${outputpath2}/${file}.lz77 -m lz >> /mnt/server/nishimoto/result/lzrr_output.log
+    nohup /usr/bin/time -f "#lz77 ${file}, %e sec, %M KB" ~/lzrr/build/compress.out -i ${folderpath}/${file} -o ${outputpath2}/${file}.rev.lz77 -m lz -r 1 >> /mnt/server/nishimoto/result/lzrr_output.log
 done
 
 for file in ${filearr[@]}; do
 	echo "lex ${file}"
-    nohup /usr/bin/time -f "#lex ${file}, %e sec, %M KB" ~/lzrr/build/compress.out -i ${folderpath}/${file} -o ${outputpath3}/${file}.lex -m lex >> /mnt/server/nishimoto/result/lzrr_output.log
+    nohup /usr/bin/time -f "#lex ${file}, %e sec, %M KB" ~/lzrr/build/compress.out -i ${folderpath}/${file} -o ${outputpath3}/${file}.rev.lex -m lex -r 1 >> /mnt/server/nishimoto/result/lzrr_output.log
 done
 
 
