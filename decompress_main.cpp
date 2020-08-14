@@ -59,7 +59,7 @@ int main(int argc, char *argv[])
     string text="";
     LZFactor::decompress(factors, text);
     //std::cout << text << std::endl;
-    if(e) stool::IO::write(output_file, text);
+     stool::IO::write(output_file, text);
     auto end = std::chrono::system_clock::now();
 
     if(e){
