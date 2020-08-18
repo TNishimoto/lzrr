@@ -1,7 +1,7 @@
-#include "lcpcomp.hpp"
+#include "lcpcomp2.hpp"
 
 namespace stool{
-MSFactor LCPCompData::getFactor()
+MSFactor LCPCompData2::getFactor()
 {
     uint64_t maxLCP = UINT64_MAX;
     SINDEX index = UINT64_MAX;
@@ -22,12 +22,12 @@ MSFactor LCPCompData::getFactor()
         return MSFactor(this->sa[index], this->sa[index-1], this->lcpArr[index]);
     }
 }
-void LCPCompData::initialize()
+void LCPCompData2::initialize()
 {
     stool::constructSA(this->text, this->sa, this->isa);
     stool::constructLCP(this->text, this->lcpArr, this->sa, this->isa);
 }
-void LCPCompData::compress(LZWriter &writer)
+void LCPCompData2::compress(LZWriter &writer)
 {
     uint64_t x = 0;
     uint64_t count = 0;
@@ -48,7 +48,7 @@ void LCPCompData::compress(LZWriter &writer)
         this->update(f);
     }
 }
-void LCPCompData::update(MSFactor f){
+void LCPCompData2::update(MSFactor f){
     if(f.isChar()){
         SINDEX i = this->isa[f.index];
         this->lcpArr[i] = UINT64_MAX;
@@ -70,7 +70,7 @@ void LCPCompData::update(MSFactor f){
 
     }
 }
-void LCPCompData::compress(string &text, LZWriter &writer){
+void LCPCompData2::compress(string &text, LZWriter &writer){
         
         LCPCompData d = LCPCompData();
         d.text = text;

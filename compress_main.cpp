@@ -10,6 +10,8 @@
 //#include "other_lz.hpp"
 //#include "lzr.hpp"
 #include "lcpcomp.hpp"
+#include "lcpcomp2.hpp"
+
 #include "lexparse.hpp"
 
 using namespace std;
