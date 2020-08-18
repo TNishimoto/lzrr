@@ -9,7 +9,7 @@
 
 //#include "other_lz.hpp"
 //#include "lzr.hpp"
-#include "lcpcomp.hpp"
+//#include "lcpcomp.hpp"
 #include "lcpcomp2.hpp"
 
 #include "lexparse.hpp"
@@ -49,7 +49,7 @@ void compress(string &text, string mode, uint64_t threshold, uint64_t lzrrMode, 
     }
     else if (mode == "lcp")
     {
-        LCPCompData::compress(text, writer);
+        LCPCompData2::compress(text, writer);
     }
     else
     {
