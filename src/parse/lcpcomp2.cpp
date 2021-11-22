@@ -1,4 +1,5 @@
 #include "lcpcomp2.hpp"
+#include "lcpcomp.hpp"
 
 namespace stool{
 MSFactor LCPCompData2::getFactor()
