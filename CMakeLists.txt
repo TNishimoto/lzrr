@@ -1,10 +1,17 @@
 cmake_minimum_required(VERSION 2.8)
 
 if(CPP_STATIC)
-set(CMAKE_CXX_FLAGS "-std=c++14 -m64 -Wall -Wextra -static")
+set(CMAKE_CXX_FLAGS "-std=c++11 -m64 -Wall -Wextra -static")
 else(CPP_STATIC)
-set(CMAKE_CXX_FLAGS "-std=c++14 -m64 -Wall -Wextra")
+set(CMAKE_CXX_FLAGS "-std=c++11 -m64 -Wall -Wextra")
 endif(CPP_STATIC)
+
+if (NOT CMAKE_BUILD_TYPE OR CMAKE_BUILD_TYPE STREQUAL "")
+    message("Release Mode")
+    set(CMAKE_BUILD_TYPE "Release" CACHE STRING "" FORCE)
+endif()
+
+
 
 set(CMAKE_CXX_FLAGS_DEBUG  "-g -O0 -DDEBUG")
 set(CMAKE_CXX_FLAGS_RELEASE  "-O3 -DNDEBUG")
@@ -42,8 +49,11 @@ target_link_libraries(fn divsufsort divsufsort64)
 
 add_executable(compress.out compress_main.cpp)
 add_executable(decompress.out decompress_main.cpp)
+add_executable(rev.out rev_main.cpp)
+
 
 target_link_libraries(compress.out fn)
 target_link_libraries(decompress.out fn)
+target_link_libraries(rev.out fn)
 
 
