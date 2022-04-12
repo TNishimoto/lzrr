@@ -11,6 +11,18 @@ if (NOT CMAKE_BUILD_TYPE OR CMAKE_BUILD_TYPE STREQUAL "")
     set(CMAKE_BUILD_TYPE "Release" CACHE STRING "" FORCE)
 endif()
 
+# Set PROJECT_IS_TOP_LEVEL to ON if if this is the top level project (not
+# if this is included as a subproject of something else). Note that this is
+# handled automatically for CMake >= 3.21.
+if (CMAKE_VERSION VERSION_LESS 3.21)
+    if ("${CMAKE_PROJECT_NAME}" STREQUAL "${PROJECT_NAME}")
+        message("SET PROJECT_IS_TOP_LEVEL ON IN ${PROJECT_NAME}")
+        set (PROJECT_IS_TOP_LEVEL ON)
+    else()
+        message("SET PROJECT_IS_TOP_LEVEL OFF IN ${PROJECT_NAME}")
+    set (PROJECT_IS_TOP_LEVEL OFF)    
+    endif()
+endif ()
 
 
 set(CMAKE_CXX_FLAGS_DEBUG  "-g -O0 -DDEBUG")

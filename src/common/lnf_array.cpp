@@ -77,7 +77,7 @@ namespace LNF
 {
 
 
-void computeLNFArray(string &text, vector<uint64_t> &sa, vector<uint64_t> &lcpArr, uint64_t threshold, vector<TINDEX> &output)
+void computeLNFArray([[maybe_unused]]string &text, vector<uint64_t> &sa, vector<uint64_t> &lcpArr, uint64_t threshold, vector<TINDEX> &output)
 {
     uint64_t n = sa.size();
 
@@ -131,7 +131,7 @@ void computeLNFArray(string &text, vector<uint64_t> &sa, vector<uint64_t> &lcpAr
 
     for (int64_t i = n - 1; i >= 0; i--)
     {
-        lcp = i == n - 1 ? 0 : lcpArr[i + 1];
+        lcp = i == (int64_t)(n - 1) ? 0 : lcpArr[i + 1];
         while (stack.size() > 0)
         {
             auto top = stack.top();
@@ -174,7 +174,7 @@ void computeLNFArray(string &text, vector<uint64_t> &sa, vector<uint64_t> &lcpAr
     }
     std::cout << std::endl;
 }
-void computeLNFArray(string &text, vector<uint64_t> &sa, vector<uint64_t> &lcpArr, vector<LNFInfo> &output)
+void computeLNFArray([[maybe_unused]]string &text, vector<uint64_t> &sa, vector<uint64_t> &lcpArr, vector<LNFInfo> &output)
 {
     //vector<uint64_t> upperLNFIndexvec, lowerLNFIndexvec, upperLNFLCPvec, lowerLNFLCPvec, ;
     uint64_t n = sa.size();
@@ -228,7 +228,7 @@ void computeLNFArray(string &text, vector<uint64_t> &sa, vector<uint64_t> &lcpAr
 
     for (int64_t i = n - 1; i >= 0; i--)
     {
-        lcp = i == n - 1 ? 0 : lcpArr[i + 1];
+        lcp = i == (int64_t)(n - 1) ? 0 : lcpArr[i + 1];
         while (stack.size() > 0)
         {
             auto top = stack.top();

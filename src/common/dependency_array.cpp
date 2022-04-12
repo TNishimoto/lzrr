@@ -71,7 +71,9 @@ uint64_t DependencyArrayManager::update(MSFactor &f)
 {
     if (f.isChar())
     {
-        UnionFind::GINDEX p = this->uf.find(f.index);
+        //UnionFind::GINDEX p = this->uf.find(f.index);
+        this->uf.find(f.index);
+        
         if (this->isUsingDependencyArrayForGroups())
         {
             //this->dependIndexes[p] = FACTORCHAR;
@@ -105,10 +107,10 @@ uint64_t DependencyArrayManager::getLCPWR(MSFactor &f)
 {
     if (this->isUsingDependencyArrayForGroups())
         return this->getLCPWR_Y(f);
-    uint64_t len = f.length;
+    //uint64_t len = f.length;
     uint64_t x = 0;
 
-    uint64_t minimalIndex = 0;
+    //uint64_t minimalIndex = 0;
     while (x < f.length)
     {
         uint64_t i = f.index + x;
@@ -131,10 +133,10 @@ uint64_t DependencyArrayManager::getLCPWR(MSFactor &f)
 }
 uint64_t DependencyArrayManager::getFakeLCPWR(MSFactor &f)
 {
-    uint64_t len = f.length;
+    //uint64_t len = f.length;
     uint64_t x = 0;
 
-    uint64_t minimalIndex = 0;
+    //uint64_t minimalIndex = 0;
     while (x < f.length)
     {
         uint64_t i = f.index + x;

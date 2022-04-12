@@ -64,7 +64,7 @@ string toString(vector<bool>& bits){
 void createStringPermutation(uint64_t len, vector<string>& output){
     vector<bool> bits;
     bits.resize(len, false);
-    uint p=0;
+    //uint p=0;
     while(true){
 
         output.push_back(toString(bits));

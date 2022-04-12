@@ -155,10 +155,10 @@ std::pair<SINDEX, uint64_t> LZRR::getLongestOccurrence(SINDEX i, vector<uint64_t
 
 
 
-std::pair<SINDEX, uint64_t> LZRR::getLongestOccurrence(SINDEX i, vector<uint64_t> *lcpArr, DependencyArrayManager &depper, vector<uint64_t> &sa, vector<uint64_t> &isa, string &text)
+std::pair<SINDEX, uint64_t> LZRR::getLongestOccurrence(SINDEX i, vector<uint64_t> *lcpArr, DependencyArrayManager &depper, vector<uint64_t> &sa, vector<uint64_t> &isa, [[maybe_unused]] string &text)
 {
     LPIterater lpi = LPIterater(i, &sa, &isa, lcpArr);
-    uint64_t n = sa.size();
+    //uint64_t n = sa.size();
     uint64_t longestFactorLength = 0;
     SINDEX index = UINT64_MAX;
 

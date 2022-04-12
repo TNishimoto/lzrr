@@ -58,7 +58,7 @@ void LZ77::compress(string &text, vector<uint64_t> &lpf, LZWriter &writer)
         }
         else
         {
-            uint64_t max = text.size() - i;
+            //uint64_t max = text.size() - i;
             uint64_t j = lpf[i];
             uint64_t lce = stool::StringFunctions::LCE(text, j, i);
             writer.write(LZFactor(j, lce));

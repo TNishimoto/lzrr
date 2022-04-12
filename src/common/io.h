@@ -212,7 +212,7 @@ class FileReader
 		while (true)
 		{
 			bool b1 = FileReader::read(stream, tmp1, bufferSize, textSize);
-			bool b2 = FileReader::read(stream2, tmp2, bufferSize, textSize2);
+			FileReader::read(stream2, tmp2, bufferSize, textSize2);
 
 			for (uint64_t i = 0; i < tmp1.size(); i++)
 			{

@@ -154,27 +154,17 @@ int main(int argc, char *argv[])
 
     }
     
-    std::cout << "\033[36m";
-    std::cout << "=============RESULT===============" << std::endl;
-    std::cout << "File : " << inputFile << std::endl;
-    std::cout << "Output : " << outputFile << std::endl;
-    std::cout << "Mode : " << mode << std::endl;
+    std::cout << "\033[36m" << std::endl;
+    std::cout << "# =============RESULT===============" << std::endl;
+    std::cout << "# File : " << inputFile << std::endl;
+    std::cout << "# Output : " << outputFile << std::endl;
+    std::cout << "# Mode : " << mode << std::endl;
     if(threshold != UINT64_MAX) std::cout << "Threshold : " << threshold << std::endl;
-    /*
-    if(mode == "lzrr"){
-        string p1 = (lzrr == 0 || lzrr == 1) ? "yes" : "no";
-        string p2 = (lzrr == 0 || lzrr == 2) ? "yes" : "no";
-
-        std::cout << "using LCP Array : " << p1 << std::endl;
-        std::cout << "using Depend Array : " << p2 << std::endl;
-
-    }
-    */
-    std::cout << "The length of the input text : " << text.size() << std::endl;
+    std::cout << "# The length of the input text : " << text.size() << std::endl;
     double charperms = (double)text.size() / elapsed;
-    std::cout << "The number of factors : " << writer.counter << std::endl;
-    std::cout << "Excecution time : " << elapsed << "ms";
-    std::cout << "[" << charperms << "chars/ms]" << std::endl;
-    std::cout << "==================================" << std::endl;
+    std::cout << "# The number of factors : " << writer.counter << std::endl;
+    std::cout << "# Excecution time : " << elapsed << "ms";
+    std::cout << "# [" << charperms << "chars/ms]" << std::endl;
+    std::cout << "# ==================================" << std::endl;
     std::cout << "\033[39m" << std::endl;
 }

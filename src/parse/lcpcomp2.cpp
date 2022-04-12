@@ -1,5 +1,5 @@
 #include "lcpcomp2.hpp"
-#include "lcpcomp.hpp"
+//#include "lcpcomp.hpp"
 
 namespace stool{
 MSFactor LCPCompData2::getFactor()
@@ -20,9 +20,7 @@ MSFactor LCPCompData2::getFactor()
         }
     }
     */
-    if(maxLCP == -1){
-        return MSFactor::empty();
-    }else if(maxLCP == 0){
+    if(maxLCP == 0){
         return MSFactor(this->sa[index], this->text[this->sa[index]] );
     }else{
         return MSFactor(this->sa[index], this->sa[index-1], this->lcpArr[index]);

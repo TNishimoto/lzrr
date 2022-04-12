@@ -33,7 +33,7 @@ public:
         int64_t lowerNextIndex = lowerIndex + 1;
         int64_t upperNextIndex = upperIndex - 1;
 
-        int64_t nextLowerLCP = lowerNextIndex >= n ? -1 : (*lcpArr)[lowerNextIndex] < lowerLCP ? (*lcpArr)[lowerNextIndex] : lowerLCP;
+        int64_t nextLowerLCP = lowerNextIndex >= (int64_t)n ? -1 : (*lcpArr)[lowerNextIndex] < lowerLCP ? (*lcpArr)[lowerNextIndex] : lowerLCP;
         int64_t nextUpperLCP = upperNextIndex < 0 ? -1 : (*lcpArr)[upperNextIndex + 1] < upperLCP ? (*lcpArr)[upperNextIndex + 1] : upperLCP;
         uint64_t upperDist = this->i - upperNextIndex;
         uint64_t lowerDist = lowerNextIndex - this->i;
@@ -53,7 +53,7 @@ public:
     }
     bool end()
     {
-        if (this->lowerIndex == n - 1 && this->upperIndex == 0)
+        if (this->lowerIndex == (int64_t)(n - 1) && this->upperIndex == 0)
         {
             return true;
         }

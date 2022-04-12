@@ -57,8 +57,8 @@ class Printer
 	static void toIntegerString(vector<X> &items, string &result, uint64_t padding)
 	{
 		result += "[";
-		int k = items.size();
-		for (unsigned int i = 0; i < (int)items.size(); i++)
+		//int k = items.size();
+		for (int i = 0; i < (int)items.size(); i++)
 		{
 			string s = "";
 
@@ -74,7 +74,7 @@ class Printer
 			}
 
 			result += s;
-			if (i != items.size() - 1)
+			if (i != (int)(items.size() - 1))
 				result += ",";
 		}
 		result += "]";
@@ -82,26 +82,18 @@ class Printer
 	static void toIntegerString(string &items, string &result, uint64_t padding)
 	{
 		result += "[";
-		int k = items.size();
-		for (unsigned int i = 0; i < (int)items.size(); i++)
+		//int k = items.size();
+		for (int i = 0; i < (int)items.size(); i++)
 		{
 			string s = "";
 
-			if(items[i] == UINT64_MAX){
-			s = "-";
-			}
-			else if(items[i] == UINT64_MAX-1){
-			s = "*";
-			}
-			else{
 			s = items[i];
-			}
 			while(s.size() < padding){
 				s += " ";
 			}
 
 			result += s;
-			if (i != items.size() - 1)
+			if (i != (int)items.size() - 1)
 				result += ",";
 		}
 		result += "]";
