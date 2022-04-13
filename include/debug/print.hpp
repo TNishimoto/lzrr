@@ -9,10 +9,6 @@
 #include <fstream>
 #include <chrono>
 #include <time.h>
-//#include <stdio.h>
-//#include <windows.h>
-//#include <Psapi.h>      // Psapi.Lib
-using namespace std;
 
 namespace stool
 {
@@ -21,9 +17,9 @@ class Printer
 {
   public:
 	template <class X>
-	static string toIntegerString(vector<X> &items)
+	static std::string toIntegerString(std::vector<X> &items)
 	{
-		string s = "";
+		std::string s = "";
 		s += "[";
 		int k = items.size();
 		for (unsigned int i = 0; i < (int)items.size(); i++)
@@ -41,7 +37,7 @@ class Printer
 		return s;
 	}
 	template <class X>
-	static void toIntegerString(vector<X> &items, string &result)
+	static void toIntegerString(std::vector<X> &items, std::string &result)
 	{
 		result += "[";
 		int k = items.size();
@@ -54,13 +50,13 @@ class Printer
 		result += "]";
 	}
 	template <class X>
-	static void toIntegerString(vector<X> &items, string &result, uint64_t padding)
+	static void toIntegerString(std::vector<X> &items, std::string &result, uint64_t padding)
 	{
 		result += "[";
 		//int k = items.size();
 		for (int i = 0; i < (int)items.size(); i++)
 		{
-			string s = "";
+			std::string s = "";
 
 			if(items[i] == UINT64_MAX){
 			s = "-";
@@ -79,13 +75,13 @@ class Printer
 		}
 		result += "]";
 	}
-	static void toIntegerString(string &items, string &result, uint64_t padding)
+	static void toIntegerString(std::string &items, std::string &result, uint64_t padding)
 	{
 		result += "[";
 		//int k = items.size();
 		for (int i = 0; i < (int)items.size(); i++)
 		{
-			string s = "";
+			std::string s = "";
 
 			s = items[i];
 			while(s.size() < padding){
@@ -102,64 +98,64 @@ class Printer
 
 
 	template <class X>
-	static void print(vector<X> &items)
+	static void print(std::vector<X> &items)
 	{
 		std::cout << toIntegerString<X>(items) << std::endl;
 	}
 
 	template <class X>
-	static string toString(vector<X> &items, uint64_t padding)
+	static std::string toString(std::vector<X> &items, uint64_t padding)
 	{
-		string s = "";
+		std::string s = "";
 		toIntegerString<X>(items, s, padding);
 		return s;
 	}
-	static string toString(string &str, uint64_t padding)
+	static std::string toString(std::string &str, uint64_t padding)
 	{
-		string s = "";
+		std::string s = "";
 		toIntegerString(str, s, padding);
 		return s;
 	}
 
 	template <class X>
-	static void write(string filename, vector<X> &items)
+	static void write(std::string filename, std::vector<X> &items)
 	{
-		ofstream out(filename, ios::out | ios::binary);
+		std::ofstream out(filename, std::ios::out | std::ios::binary);
 		if (!out)
 		{
 			throw - 1;
 		}
-		string s = toIntegerString<X>(items);
+		std::string s = toIntegerString<X>(items);
 		out.write((const char *)&s[0], sizeof(char) * s.size());
 	}
-	static bool write(ofstream &os, std::string &text)
+	static bool write(std::ofstream &os, std::string &text)
 	{
 		os.write((const char *)(&text[0]), sizeof(char) * text.size());
 		return true;
 	}
-	static bool write(string filename, std::string &text)
+	static bool write(std::string filename, std::string &text)
 	{
-		ofstream out(filename, ios::out | ios::binary);
+		std::ofstream out(filename, std::ios::out | std::ios::binary);
 		if (!out)
 			return 1;
 		return write(out, text);
 	}
 	static bool debugWrite(std::string &text)
 	{
-		ofstream out("debug.txt", ios::out | ios::binary | ios::app);
+		std::ofstream out("debug.txt", std::ios::out | std::ios::binary | std::ios::app);
 		if (!out)
 			return 1;
 		return write(out, text);
 	}
 	template <class X>
-	static void debugWrite(vector<X> &items)
+	static void debugWrite(std::vector<X> &items)
 	{
-		ofstream out("debug.txt", ios::out | ios::binary | ios::app);
+		std::ofstream out("debug.txt", std::ios::out | std::ios::binary | std::ios::app);
 		if (!out)
 		{
 			throw - 1;
 		}
-		string s = toIntegerString<X>(items);
+		std::string s = toIntegerString<X>(items);
 		out.write((const char *)&s[0], sizeof(char) * s.size());
 	}
 

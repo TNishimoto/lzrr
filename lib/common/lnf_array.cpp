@@ -34,7 +34,7 @@ namespace stool{
             this->lcp = 0;
         }
     }
-    TINDEX LNFInfo::reference(vector<uint64_t> &sa)
+    TINDEX LNFInfo::reference(std::vector<uint64_t> &sa)
     {
         if (this->isBeg)
         {
@@ -77,12 +77,12 @@ namespace LNF
 {
 
 
-void computeLNFArray([[maybe_unused]]string &text, vector<uint64_t> &sa, vector<uint64_t> &lcpArr, uint64_t threshold, vector<TINDEX> &output)
+void computeLNFArray([[maybe_unused]]std::string &text, std::vector<uint64_t> &sa, std::vector<uint64_t> &lcpArr, uint64_t threshold, std::vector<TINDEX> &output)
 {
     uint64_t n = sa.size();
 
-    vector<uint64_t> lowerLCPvec;
-    vector<bool> checker;
+    std::vector<uint64_t> lowerLCPvec;
+    std::vector<bool> checker;
 
     output.resize(n, 0);
     lowerLCPvec.resize(n, 0);
@@ -174,12 +174,12 @@ void computeLNFArray([[maybe_unused]]string &text, vector<uint64_t> &sa, vector<
     }
     std::cout << std::endl;
 }
-void computeLNFArray([[maybe_unused]]string &text, vector<uint64_t> &sa, vector<uint64_t> &lcpArr, vector<LNFInfo> &output)
+void computeLNFArray([[maybe_unused]]std::string &text, std::vector<uint64_t> &sa, std::vector<uint64_t> &lcpArr, std::vector<LNFInfo> &output)
 {
-    //vector<uint64_t> upperLNFIndexvec, lowerLNFIndexvec, upperLNFLCPvec, lowerLNFLCPvec, ;
+    //std::vector<uint64_t> upperLNFIndexvec, lowerLNFIndexvec, upperLNFLCPvec, lowerLNFLCPvec, ;
     uint64_t n = sa.size();
 
-    vector<uint64_t> upperLCPvec, lowerLCPvec;
+    std::vector<uint64_t> upperLCPvec, lowerLCPvec;
 
     output.resize(n);
     upperLCPvec.resize(n, 0);
@@ -294,9 +294,9 @@ void computeLNFArray([[maybe_unused]]string &text, vector<uint64_t> &sa, vector<
     }
     std::cout << std::endl;
 }
-void computeLNFArrayForDebug(string &text, vector<uint64_t> &sa, vector<uint64_t> &lcpArr, uint64_t threshold, vector<TINDEX> &output)
+void computeLNFArrayForDebug(std::string &text, std::vector<uint64_t> &sa, std::vector<uint64_t> &lcpArr, uint64_t threshold, std::vector<TINDEX> &output)
 {
-    vector<LNFInfo> vec;
+    std::vector<LNFInfo> vec;
     computeLNFArray(text, sa, lcpArr, vec);
     output.resize(sa.size(), UINT64_MAX);
     for (uint64_t i = 0; i < sa.size(); i++)

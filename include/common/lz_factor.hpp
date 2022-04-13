@@ -8,7 +8,6 @@
 #include "sa_lcp.hpp"
 //#include "print.hpp"
 #include <set>
-using namespace std;
 
 namespace stool{
 
@@ -37,19 +36,19 @@ uint64_t getLength(){
     char getChar();
 
 
-    string toString();
+    std::string toString();
 
-    static void toFactorString(vector<LZFactor> &input, string& output){
+    static void toFactorString(std::vector<LZFactor> &input, std::string& output){
         output.clear();
         for(uint64_t i=0;i<input.size();i++){
-            string s = input[i].toString();
+            std::string s = input[i].toString();
             output += s;
             if(i != input.size() - 1) output += ",";
         }
     }
 
-    static void decompress(vector<LZFactor> &factors, string &output);
-    //static void decompress(vector<LZFactor> &factors, string &output, bool allowRightReference);
+    static void decompress(std::vector<LZFactor> &factors, std::string &output);
+    //static void decompress(std::vector<LZFactor> &factors, string &output, bool allowRightReference);
 };
 /*
 This class represents the factor of Macro scheme.
@@ -92,11 +91,11 @@ class MSFactor{
     char getChar() const{
         return (char)this->reference;
     }
-    string toString(){
+    std::string toString(){
         if(!this->isChar()){
-            return "[" + to_string(index) + ", " + to_string(reference) + ", " + to_string(length) + "]"; 
+            return "[" + std::to_string(index) + ", " + std::to_string(reference) + ", " + std::to_string(length) + "]"; 
         }else{
-            string s = "";
+            std::string s = "";
             s += (char)this->reference;
             return s;
         }
@@ -116,33 +115,33 @@ class MSFactor{
         }
     }
 
-    static void decompose(vector<MSFactor> &factors, string &output);
+    static void decompose(std::vector<MSFactor> &factors, std::string &output);
     LZFactor toLZFactor(){
         LZFactor f;
         f.reference = this->reference;
         f.length = this->length;
         return f;
     }
-    static void toLZFactors(vector<MSFactor> &factors, vector<LZFactor> &output);
+    static void toLZFactors(std::vector<MSFactor> &factors, std::vector<LZFactor> &output);
 
-    static void toMSFactors(vector<LZFactor> &factors, vector<MSFactor> &output);
+    static void toMSFactors(std::vector<LZFactor> &factors, std::vector<MSFactor> &output);
 
 };
 
 class LZWriter{
     public:
 
-    vector<LZFactor> tmp;
-    vector<MSFactor> tmp2;
+    std::vector<LZFactor> tmp;
+    std::vector<MSFactor> tmp2;
     uint64_t counter = 0;
-    ofstream *out;
+    std::ofstream *out;
 
     LZWriter(){
         this->out = NULL;
     }
-    void open(string file){
-        this->out = new ofstream(file, ios::out | ios::binary);
-	    //ofstream out(outputFile, ios::out | ios::binary);
+    void open(std::string file){
+        this->out = new std::ofstream(file, std::ios::out | std::ios::binary);
+	    //std::ofstream out(outputFile, ios::out | ios::binary);
     }
     void write(LZFactor factor){
         tmp.push_back(factor);

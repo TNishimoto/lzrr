@@ -4,7 +4,6 @@
 #include <cassert>
 #include <unordered_map>
 
-using namespace std;
 
 namespace stool
 {
@@ -41,7 +40,7 @@ Note that our implementation runs slowly.
         std::vector<uint64_t> lcpArr;
         std::set<uint64_t, PointCompare> rankSet;
 
-        //vector<MSFactor> factors;
+        //std::vector<MSFactor> factors;
         //unordered_map<uint64_t> heap;
         uint64_t size()
         {

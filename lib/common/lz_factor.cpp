@@ -24,20 +24,20 @@ char LZFactor::getChar()
 }
 
 
-string LZFactor::toString()
+std::string LZFactor::toString()
 {
     if (!this->isChar())
     {
-        return "[" + to_string(reference) + ", " + to_string(length) + "]";
+        return "[" + std::to_string(reference) + ", " + std::to_string(length) + "]";
     }
     else
     {
-        string s = "";
+        std::string s = "";
         s += (char)this->reference;
         return s;
     }
 }
-void MSFactor::toLZFactors(vector<MSFactor> &factors, vector<LZFactor> &output)
+void MSFactor::toLZFactors(std::vector<MSFactor> &factors, std::vector<LZFactor> &output)
 {
     std::sort(factors.begin(), factors.end());
     output.resize(factors.size());
@@ -54,7 +54,7 @@ void MSFactor::toLZFactors(vector<MSFactor> &factors, vector<LZFactor> &output)
         }
     }
 }
-void MSFactor::toMSFactors(vector<LZFactor> &factors, vector<MSFactor> &output)
+void MSFactor::toMSFactors(std::vector<LZFactor> &factors, std::vector<MSFactor> &output)
 {
     output.resize(factors.size());
     uint64_t pos = 0;
@@ -73,14 +73,14 @@ void MSFactor::toMSFactors(vector<LZFactor> &factors, vector<MSFactor> &output)
     }
 }
 
-void MSFactor::decompose(vector<MSFactor> &factors, string &output)
+void MSFactor::decompose(std::vector<MSFactor> &factors, std::string &output)
 {
-    vector<LZFactor> lzf;
+    std::vector<LZFactor> lzf;
     MSFactor::toLZFactors(factors, lzf);
     LZFactor::decompress(lzf, output);
 }
 
-void LZFactor::decompress(vector<LZFactor> &factors, string &output)
+void LZFactor::decompress(std::vector<LZFactor> &factors, std::string &output)
 {
     uint64_t len = 0;
     bool isRightReference = false;

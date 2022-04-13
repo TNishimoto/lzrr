@@ -6,5 +6,5 @@
 #include <unordered_set>
 #include "./randstr.hpp"
 
-void transformVector(vector<uint64_t> &item, vector<uint64_t> &sa, vector<uint64_t> &output);
-void transformVector2(vector<uint64_t> &item, vector<uint64_t> &sa, vector<uint64_t> &output);
+void transformVector(std::vector<uint64_t> &item, std::vector<uint64_t> &sa, std::vector<uint64_t> &output);
+void transformVector2(std::vector<uint64_t> &item, std::vector<uint64_t> &sa, std::vector<uint64_t> &output);

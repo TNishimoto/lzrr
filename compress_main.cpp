@@ -9,14 +9,13 @@
 #include "parse/lcpcomp2.hpp"
 #include "parse/lexparse.hpp"
 
-using namespace std;
 
-void compress(string &text, string mode, uint64_t threshold, uint64_t lzrrMode, LZWriter &writer)
+void compress(std::string &text, std::string mode, uint64_t threshold, uint64_t lzrrMode, stool::LZWriter &writer)
 {
 
     if (mode == "lz")
     {
-        LZ77::compress(text, writer);
+        stool::LZ77::compress(text, writer);
     }
     else if (mode == "lzrr")
     {
@@ -34,17 +33,17 @@ void compress(string &text, string mode, uint64_t threshold, uint64_t lzrrMode, 
         }
 
 
-        LZRR::compress(text, threshold, usingLCPArray, usingDependArray, writer);
+        stool::LZRR::compress(text, threshold, usingLCPArray, usingDependArray, writer);
     }
     else if (mode == "lex")
     {
-        LexParse::compress(text, writer);
+        stool::LexParse::compress(text, writer);
     }else if(mode == "lexr"){
-        LexParse::compressR(text, writer);
+        stool::LexParse::compressR(text, writer);
     }
     else if (mode == "lcp")
     {
-        LCPCompData2::compress(text, writer);
+        stool::LCPCompData2::compress(text, writer);
     }
     else
     {
@@ -53,15 +52,15 @@ void compress(string &text, string mode, uint64_t threshold, uint64_t lzrrMode, 
     }
     writer.complete();
 }
-void checkFile(string &text, string filename)
+void checkFile(std::string &text, std::string filename)
 {
-    string dtext;
+    std::string dtext;
     //std::cout << "decompose " << std::endl;
 
-    vector<LZFactor> factors;
+    std::vector<stool::LZFactor> factors;
     stool::IO::load(filename, factors);
 
-    LZFactor::decompress(factors, dtext);
+    stool::LZFactor::decompress(factors, dtext);
     if (text.size() != dtext.size())
     {
         std::cout << "differrent size!" << std::endl;
@@ -88,18 +87,18 @@ int main(int argc, char *argv[])
 
     #endif
     cmdline::parser p;
-    p.add<string>("input_file", 'i', "input file name", true);
-    p.add<string>("output_file", 'o', "output file name (the default output name is 'input_file.ext')", false, "");
-    p.add<string>("mode", 'm', "compression algorithm ('lz' : LZ77, 'lex' : Lexicographic parse, 'lcp' : lcpcomp, 'lzrr' : LZRR)", false, "lzrr");
+    p.add<std::string>("input_file", 'i', "input file name", true);
+    p.add<std::string>("output_file", 'o', "output file name (the default output name is 'input_file.ext')", false, "");
+    p.add<std::string>("mode", 'm', "compression algorithm ('lz' : LZ77, 'lex' : Lexicographic parse, 'lcp' : lcpcomp, 'lzrr' : LZRR)", false, "lzrr");
     p.add<bool>("reverse", 'r', "use the reverse text of input text", false, false);
     p.add<bool>("file_check", 'c', "check output file", false, false);
     p.add<uint64_t>("threshold", 't', "threshold (used in LZRR)", false, UINT64_MAX);
     //p.add<uint64_t>("lzlrmode", 'z', "lzlrmode(LZRR)", false, 0);
 
     p.parse_check(argc, argv);
-    string inputFile = p.get<string>("input_file");
-    string outputFile = p.get<string>("output_file");
-    string mode = p.get<string>("mode");
+    std::string inputFile = p.get<std::string>("input_file");
+    std::string outputFile = p.get<std::string>("output_file");
+    std::string mode = p.get<std::string>("mode");
     bool fileCheck = p.get<bool>("file_check");
     bool isReverse = p.get<bool>("reverse");
     uint64_t threshold = p.get<uint64_t>("threshold");
@@ -109,7 +108,7 @@ int main(int argc, char *argv[])
     if (outputFile.size() == 0)
     {
         if(mode == "lzrr" && threshold != UINT64_MAX){
-            outputFile = inputFile + (isReverse ? "_rev" : "") + "_t" + to_string(threshold) + "." + mode;
+            outputFile = inputFile + (isReverse ? "_rev" : "") + "_t" + std::to_string(threshold) + "." + mode;
         }else{
             outputFile = inputFile + (isReverse ? "_rev" : "") + "." + mode;
         }
@@ -123,16 +122,16 @@ int main(int argc, char *argv[])
     }
 
 
-    LZWriter writer;
+    stool::LZWriter writer;
     writer.open(outputFile);
-	//ofstream out(outputFile, ios::out | ios::binary);
+	//std::ofstream out(outputFile, ios::out | ios::binary);
 
-    string text = "";
+    std::string text = "";
     std::cout << "Loading : " << inputFile << std::endl;
     stool::IO::load(inputFile, text);
     if(isReverse)stool::StringFunctions::reverse(text);
 
-    //vector<LZFactor> factors;
+    //std::vector<LZFactor> factors;
 
     auto start = std::chrono::system_clock::now();
     compress(text, mode, threshold,lzrr, writer);

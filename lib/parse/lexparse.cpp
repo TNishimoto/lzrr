@@ -1,7 +1,7 @@
 #include "parse/lexparse.hpp"
 
 namespace stool{
-void LexParse::compress(string &text, vector<uint64_t> &sa, vector<uint64_t> &isa, LZWriter &writer)
+void LexParse::compress(std::string &text, std::vector<uint64_t> &sa, std::vector<uint64_t> &isa, LZWriter &writer)
 {
     uint64_t i = 0;
     while (i < text.size())
@@ -22,10 +22,10 @@ void LexParse::compress(string &text, vector<uint64_t> &sa, vector<uint64_t> &is
         i += f.getLength();
     }
 }
-void LexParse::compress(string &text, LZWriter &writer)
+void LexParse::compress(std::string &text, LZWriter &writer)
 {
-    vector<uint64_t> sa = stool::construct_suffix_array(text);
-    vector<uint64_t> isa;
+    std::vector<uint64_t> sa = stool::construct_suffix_array(text);
+    std::vector<uint64_t> isa;
     stool::constructISA(text, sa, isa);
 
     //stool::constructSA(text, sa, isa);
@@ -33,7 +33,7 @@ void LexParse::compress(string &text, LZWriter &writer)
     //MSFactor::toLZFactors(d.factors, output);
 }
 
-void LexParse::compressR(string &text, vector<uint64_t> &sa, vector<uint64_t> &isa, LZWriter &writer)
+void LexParse::compressR(std::string &text, std::vector<uint64_t> &sa, std::vector<uint64_t> &isa, LZWriter &writer)
 {
     uint64_t i = 0;
     uint64_t p = 0;
@@ -62,11 +62,11 @@ void LexParse::compressR(string &text, vector<uint64_t> &sa, vector<uint64_t> &i
 
     std::cout << std::endl;
 }
-void LexParse::compressR(string &text, LZWriter &writer)
+void LexParse::compressR(std::string &text, LZWriter &writer)
 {
 
-    vector<uint64_t> sa = stool::construct_suffix_array(text);
-    vector<uint64_t> isa;
+    std::vector<uint64_t> sa = stool::construct_suffix_array(text);
+    std::vector<uint64_t> isa;
     stool::constructISA(text, sa, isa);
 
     LexParse::compressR(text, sa, isa, writer);

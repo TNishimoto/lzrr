@@ -10,7 +10,7 @@ namespace stool
     uint64_t rlcpCounter = 0;
 
     /*
-    void constructSA(string &text, vector<uint64_t> &sa)
+    void constructSA(std::string &text, std::vector<uint64_t> &sa)
     {
 
         uint64_t n = text.size();
@@ -26,7 +26,7 @@ namespace stool
         free(SA);
     }
     */
-    void constructISA(string &text, vector<uint64_t> &sa, vector<uint64_t> &isa)
+    void constructISA(std::string &text, std::vector<uint64_t> &sa, std::vector<uint64_t> &isa)
     {
         uint64_t n = text.size();
         isa.resize(n);
@@ -37,7 +37,7 @@ namespace stool
         }
     }
     /*
-    void constructSA(string &text, vector<uint64_t> &sa, vector<uint64_t> &isa)
+    void constructSA(std::string &text, std::vector<uint64_t> &sa, std::vector<uint64_t> &isa)
     {
 
         std::cout << "constructing Suffix Array...";
@@ -57,7 +57,7 @@ namespace stool
         std::cout << "[END]" << std::endl;
     }
     */
-    void constructLCP(string &text, vector<uint64_t> &lcp, vector<uint64_t> &sa, vector<uint64_t> &isa)
+    void constructLCP(std::string &text, std::vector<uint64_t> &lcp, std::vector<uint64_t> &sa, std::vector<uint64_t> &isa)
     {
         lcp.resize(text.size(), 0);
         uint64_t n = text.size();
@@ -99,7 +99,7 @@ namespace stool
     }
     namespace StringFunctions
     {
-        uint64_t LCE(string &text, uint64_t i, uint64_t j)
+        uint64_t LCE(std::string &text, uint64_t i, uint64_t j)
         {
             if (i > j)
                 return LCE(text, j, i);
@@ -114,9 +114,9 @@ namespace stool
             }
             return x;
         }
-        void reverse(string &text)
+        void reverse(std::string &text)
         {
-            string tmp = text;
+            std::string tmp = text;
             for (uint64_t i = 0; i < text.size(); i++)
             {
                 text[i] = tmp[text.size() - 1 - i];

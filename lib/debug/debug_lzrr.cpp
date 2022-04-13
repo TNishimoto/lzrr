@@ -1,6 +1,6 @@
 #include "debug/debug_lzrr.hpp"
 
-void transformVector(vector<uint64_t> &item, vector<uint64_t> &sa, vector<uint64_t> &output)
+void transformVector(std::vector<uint64_t> &item, std::vector<uint64_t> &sa, std::vector<uint64_t> &output)
 {
     output.resize(sa.size());
     for (uint64_t i = 0; i < sa.size(); i++)
@@ -9,7 +9,7 @@ void transformVector(vector<uint64_t> &item, vector<uint64_t> &sa, vector<uint64
     }
 }
 
-void transformVector2(vector<uint64_t> &item, vector<uint64_t> &sa, vector<uint64_t> &output)
+void transformVector2(std::vector<uint64_t> &item, std::vector<uint64_t> &sa, std::vector<uint64_t> &output)
 {
     output.resize(sa.size());
     for (uint64_t i = 0; i < sa.size(); i++)

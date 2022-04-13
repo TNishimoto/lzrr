@@ -2,6 +2,8 @@
 #pragma once
 #include <vector>
 #include "constants.hpp"
+
+namespace stool{
 class LPIterater
 {
     std::vector<uint64_t> *sa;
@@ -63,3 +65,4 @@ public:
         }
     }
 };
+}

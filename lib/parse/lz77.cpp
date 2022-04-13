@@ -2,7 +2,7 @@
 #include "libdivsufsort/sa.hpp"
 
 namespace stool{
-void LZ77::constructLPFUDArray(vector<uint64_t> &sa, vector<uint64_t> &lpfu, vector<uint64_t> &lpfd)
+void LZ77::constructLPFUDArray(std::vector<uint64_t> &sa, std::vector<uint64_t> &lpfu, std::vector<uint64_t> &lpfd)
 {
     lpfd.resize(sa.size(), UINT64_MAX);
     lpfu.resize(sa.size(), UINT64_MAX);
@@ -47,7 +47,7 @@ void LZ77::constructLPFUDArray(vector<uint64_t> &sa, vector<uint64_t> &lpfu, vec
     }
 }
 
-void LZ77::compress(string &text, vector<uint64_t> &lpf, LZWriter &writer)
+void LZ77::compress(std::string &text, std::vector<uint64_t> &lpf, LZWriter &writer)
 {
     uint64_t i = 0;
     while (i < text.size())
@@ -68,7 +68,7 @@ void LZ77::compress(string &text, vector<uint64_t> &lpf, LZWriter &writer)
     }
 }
 
-void LZ77::compress(string &text, vector<uint64_t> &lpfu, vector<uint64_t> &lpfd, LZWriter &writer)
+void LZ77::compress(std::string &text, std::vector<uint64_t> &lpfu, std::vector<uint64_t> &lpfd, LZWriter &writer)
 {
     uint64_t i = 0;
     while (i < text.size())
@@ -89,10 +89,10 @@ void LZ77::compress(string &text, vector<uint64_t> &lpfu, vector<uint64_t> &lpfd
         }
     }
 }
-void LZ77::compress(string &text, LZWriter &writer)
+void LZ77::compress(std::string &text, LZWriter &writer)
 {
-    vector<uint64_t> lpfu, lpfd;
-    vector<uint64_t> sa = stool::construct_suffix_array(text);
+    std::vector<uint64_t> lpfu, lpfd;
+    std::vector<uint64_t> sa = stool::construct_suffix_array(text);
 
     //stool::constructSA(text, sa);
     std::cout << "constructing LPFUD...";

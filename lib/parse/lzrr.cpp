@@ -91,7 +91,7 @@ void LZRR::compress(LZWriter &writer)
     std::cout << std::endl;
 }
 /*
-std::pair<SINDEX, uint64_t> LZRR::getLongestOccurrence(SINDEX i, vector<uint64_t> *lcpArr, DependencyArrayManager &depper, vector<uint64_t> &sa, vector<uint64_t> &isa, string &text)
+std::pair<SINDEX, uint64_t> LZRR::getLongestOccurrence(SINDEX i, std::vector<uint64_t> *lcpArr, DependencyArrayManager &depper, std::vector<uint64_t> &sa, std::vector<uint64_t> &isa, string &text)
 {
     uint64_t n = sa.size();
     uint64_t lfLength = 0;
@@ -159,7 +159,7 @@ std::pair<SINDEX, uint64_t> LZRR::getLongestOccurrence(SINDEX i, vector<uint64_t
 
 
 
-std::pair<SINDEX, uint64_t> LZRR::getLongestOccurrence(SINDEX i, vector<uint64_t> *lcpArr, DependencyArrayManager &depper, vector<uint64_t> &sa, vector<uint64_t> &isa, [[maybe_unused]] string &text)
+std::pair<SINDEX, uint64_t> LZRR::getLongestOccurrence(SINDEX i, std::vector<uint64_t> *lcpArr, DependencyArrayManager &depper, std::vector<uint64_t> &sa, std::vector<uint64_t> &isa, [[maybe_unused]] std::string &text)
 {
     LPIterater lpi = LPIterater(i, &sa, &isa, lcpArr);
     //uint64_t n = sa.size();

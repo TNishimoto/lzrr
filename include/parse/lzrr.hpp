@@ -7,7 +7,6 @@
 #include "../common/lnf_array.hpp"
 #include "../common/lp.hpp"
 
-using namespace std;
 
 namespace stool{
 /*
@@ -16,12 +15,12 @@ namespace stool{
 class LZRR
 {
   private:
-    string *text;
-    vector<uint64_t> sa;
-    vector<uint64_t> isa;
-    vector<uint64_t> lcpArr;
+    std::string *text;
+    std::vector<uint64_t> sa;
+    std::vector<uint64_t> isa;
+    std::vector<uint64_t> lcpArr;
     DependencyArrayManager depper;
-    vector<uint64_t> longestRightReferenceArr;
+    std::vector<uint64_t> longestRightReferenceArr;
 
     uint64_t threshold;
 
@@ -41,11 +40,11 @@ class LZRR
     If the factor does not have a reference then the value is the maximal value (UINT64_MAX).
     The second element : the length of the factor. 
     */
-    static std::pair<SINDEX, uint64_t> getLongestOccurrence(SINDEX i, vector<uint64_t> *lcpArr, DependencyArrayManager &depper, vector<uint64_t> &sa, vector<uint64_t> &isa, string &text);
+    static std::pair<SINDEX, uint64_t> getLongestOccurrence(SINDEX i, std::vector<uint64_t> *lcpArr, DependencyArrayManager &depper, std::vector<uint64_t> &sa, std::vector<uint64_t> &isa, std::string &text);
 
     public:
     // Compute the LZRR factorization of the input text.
-    static void compress(string &text, uint64_t threshold, bool usingLCPArray, bool usingDependArray, LZWriter &writer)
+    static void compress(std::string &text, uint64_t threshold, bool usingLCPArray, bool usingDependArray, LZWriter &writer)
     {
         LZRR md = LZRR();
         md.text = &text;
@@ -53,7 +52,7 @@ class LZRR
         md.compress(writer);
     }
     // Compute the LZRR factorization of the input text.
-    static void compress(string &text, LZWriter &writer)
+    static void compress(std::string &text, LZWriter &writer)
     {
         return LZRR::compress(text, UINT64_MAX, true, true, writer);
     }

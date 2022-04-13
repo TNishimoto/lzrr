@@ -81,7 +81,7 @@ void UnionFind::back()
         this->stack.pop();
     }
 }
-string UnionFind::toString()
+std::string UnionFind::toString()
 {
     return stool::Printer::toString(this->array, 2);
 }

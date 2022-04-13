@@ -8,9 +8,6 @@
 //#include "treap/dynamic_string.hpp"
 
 
-using namespace std;
-using namespace stool;
-
 namespace stool{
     /*
     This is the data structure to emulate dependency array of the input text.
@@ -20,11 +17,11 @@ class DependencyArrayManager{
     // uf.find(i) == uf.find(j) if DA[i] == DA[j].
     UnionFind uf;
     // DA[i] = dependencyArrayForGroups[uf.find(i)]
-    vector<uint64_t> dependencyArrayForGroups;
+    std::vector<uint64_t> dependencyArrayForGroups;
     // If T[i] is a factor not having a reference then T[i] = factorChars[i].
     std::unordered_map<uint64_t, char> factorChars;
-    vector<uint64_t> smallDA;
-    stack<uint64_t> smallStack;
+    std::vector<uint64_t> smallDA;
+    std::stack<uint64_t> smallStack;
 
 
     bool isUsingDependencyArrayForGroups(){

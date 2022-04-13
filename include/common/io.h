@@ -9,26 +9,25 @@
 #include <fstream>
 #include <chrono>
 #include <time.h>
-using namespace std;
 namespace stool
 {
 class IO
 {
   public:
 	template <typename T>
-	static void load(std::ifstream &stream, vector<T> &vec, bool allReading)
+	static void load(std::ifstream &stream, std::vector<T> &vec, bool allReading)
 	{
 		if (!stream)
 		{
-			std::cerr << "error reading file " << endl;
+			std::cerr << "error reading file " << std::endl;
 			throw - 1;
 		}
 		uint64_t len;
 		if (allReading)
 		{
-			stream.seekg(0, ios::end);
+			stream.seekg(0, std::ios::end);
 			uint64_t n = (unsigned long)stream.tellg();
-			stream.seekg(0, ios::beg);
+			stream.seekg(0, std::ios::beg);
 			len = n / sizeof(T);
 		}
 		else
@@ -40,15 +39,15 @@ class IO
 	}
 
 	template <typename T>
-	static void load(std::ifstream &stream, vector<T> &vec)
+	static void load(std::ifstream &stream, std::vector<T> &vec)
 	{
 		load(stream, vec, true);
 	}
 	template <typename T>
-	static void load(string &filename, vector<T> &vec)
+	static void load(std::string &filename, std::vector<T> &vec)
 	{
-		ifstream inputStream1;
-		inputStream1.open(filename, ios::binary);
+		std::ifstream inputStream1;
+		inputStream1.open(filename, std::ios::binary);
 		load(inputStream1, vec);
 
 		inputStream1.close();
@@ -56,7 +55,7 @@ class IO
 	}
 
 	template <typename T>
-	static bool write(ofstream &out, vector<T> &text, bool allWriting)
+	static bool write(std::ofstream &out, std::vector<T> &text, bool allWriting)
 	{
 		if (!out)
 			return 1;
@@ -74,30 +73,30 @@ class IO
 		return true;
 	}
 	template <typename T>
-	static bool write(ofstream &out, vector<T> &text)
+	static bool write(std::ofstream &out, std::vector<T> &text)
 	{
 		write(out, text, true);
 		return true;
 	}
 	template <typename T>
-	static bool write(string &filename, vector<T> &text)
+	static bool write(std::string &filename, std::vector<T> &text)
 	{
-		ofstream out(filename, ios::out | ios::binary);
+		std::ofstream out(filename, std::ios::out | std::ios::binary);
 		write<T>(out, text);
 		out.close();
 		return true;
 	}
-	static bool load(std::ifstream &file, string &output)
+	static bool load(std::ifstream &file, std::string &output)
 	{
 
 		if (!file)
 		{
-			std::cerr << "error reading file " << endl;
+			std::cerr << "error reading file " << std::endl;
 			return false;
 		}
-		file.seekg(0, ios::end);
+		file.seekg(0, std::ios::end);
 		uint64_t n = (unsigned long)file.tellg();
-		file.seekg(0, ios::beg);
+		file.seekg(0, std::ios::beg);
 
 		output.resize(n / sizeof(char));
 
@@ -107,21 +106,21 @@ class IO
 
 		return true;
 	}
-	static void load(string filename, string &output)
+	static void load(std::string filename, std::string &output)
 	{
-		ifstream inputStream;
-		inputStream.open(filename, ios::binary);
+		std::ifstream inputStream;
+		inputStream.open(filename, std::ios::binary);
 		load(inputStream, output);
 	}
-	//static bool write(string &filename, vector<int32_t> &text);
-	static bool write(ofstream &os, std::string &text)
+	//static bool write(std::string &filename, vector<int32_t> &text);
+	static bool write(std::ofstream &os, std::string &text)
 	{
 		os.write((const char *)(&text[0]), sizeof(char) * text.size());
 		return true;
 	}
-	static bool write(string &filename, std::string &text)
+	static bool write(std::string &filename, std::string &text)
 	{
-		ofstream out(filename, ios::out | ios::binary);
+		std::ofstream out(filename, std::ios::out | std::ios::binary);
 		if (!out)
 			return 1;
 		return write(out, text);
@@ -130,7 +129,7 @@ class IO
 class FileReader
 {
   public:
-	static bool read(ifstream &file, vector<char> &output, uint64_t bufferSize, uint64_t textSize)
+	static bool read(std::ifstream &file, std::vector<char> &output, uint64_t bufferSize, uint64_t textSize)
 	{
 		if (file.eof())
 		{
@@ -140,33 +139,33 @@ class FileReader
 		if (i == textSize)
 			return false;
 
-		uint64_t tmpBufferSize = min(textSize - i, bufferSize);
+		uint64_t tmpBufferSize = std::min(textSize - i, bufferSize);
 		output.resize(tmpBufferSize);
 		file.read((char *)&(output)[0], tmpBufferSize * sizeof(char));
 
 		return true;
 	}
-	static uint64_t getTextSize(ifstream &file)
+	static uint64_t getTextSize(std::ifstream &file)
 	{
-		file.seekg(0, ios::end);
+		file.seekg(0, std::ios::end);
 		uint64_t textSize = (uint64_t)file.tellg() / sizeof(char);
-		file.seekg(0, ios::beg);
+		file.seekg(0, std::ios::beg);
 		return textSize;
 	}
-	static uint64_t getTextSize(string filename)
+	static uint64_t getTextSize(std::string filename)
 	{
 
-		ifstream inputStream;
-		inputStream.open(filename, ios::binary);
+		std::ifstream inputStream;
+		inputStream.open(filename, std::ios::binary);
 		uint64_t p = getTextSize(inputStream);
 		inputStream.close();
 		return p;
 	}
-	static bool read(ifstream &file, vector<char> &output)
+	static bool read(std::ifstream &file, std::vector<char> &output)
 	{
-		file.seekg(0, ios::end);
+		file.seekg(0, std::ios::end);
 		uint64_t textSize = (uint64_t)file.tellg() / sizeof(char);
-		file.seekg(0, ios::beg);
+		file.seekg(0, std::ios::beg);
 
 		uint64_t i = file.tellg();
 		if (i == textSize)
@@ -178,25 +177,25 @@ class FileReader
 		return true;
 	}
 
-	static std::pair<bool, uint64_t> equalCheck(string filename, string filename2, uint64_t bufferSize)
+	static std::pair<bool, uint64_t> equalCheck(std::string filename, std::string filename2, uint64_t bufferSize)
 	{
-		ifstream stream, stream2;
-		stream.open(filename, ios::binary);
-		stream2.open(filename2, ios::binary);
+		std::ifstream stream, stream2;
+		stream.open(filename, std::ios::binary);
+		stream2.open(filename2, std::ios::binary);
 
 		if (!stream)
 		{
-			std::cerr << "error reading file " << endl;
+			std::cerr << "error reading file " << std::endl;
 			throw - 1;
 		}
 
-		stream.seekg(0, ios::end);
+		stream.seekg(0, std::ios::end);
 		uint64_t textSize = (uint64_t)stream.tellg() / sizeof(char);
-		stream.seekg(0, ios::beg);
+		stream.seekg(0, std::ios::beg);
 
-		stream2.seekg(0, ios::end);
+		stream2.seekg(0, std::ios::end);
 		uint64_t textSize2 = (uint64_t)stream2.tellg() / sizeof(char);
-		stream2.seekg(0, ios::beg);
+		stream2.seekg(0, std::ios::beg);
 
 		if (textSize != textSize2)
 		{
@@ -206,7 +205,7 @@ class FileReader
 			return std::pair<bool, uint64_t>(false, UINT64_MAX);
 		}
 
-		vector<char> tmp1, tmp2;
+		std::vector<char> tmp1, tmp2;
 		uint64_t sum = 0;
 
 		while (true)

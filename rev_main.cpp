@@ -3,22 +3,18 @@
 #include "common/cmdline.h"
 #include "common/io.h"
 #include "common/lz_factor.hpp"
-//#include "randstr.hpp"
-//#include "other/lzr.hpp"
-using namespace std;
-using namespace stool;
 
 int main(int argc, char *argv[])
 {
     //argc parse
     cmdline::parser p;
 
-    p.add<string>("input_file", 'i', "input file name", true);
-    p.add<string>("output_file", 'o', "output file name (the default output name is 'input_file.txt')", false);
+    p.add<std::string>("input_file", 'i', "input file name", true);
+    p.add<std::string>("output_file", 'o', "output file name (the default output name is 'input_file.txt')", false);
 
     p.parse_check(argc, argv);
-    string input_file = p.get<string>("input_file");
-    string output_file = p.get<string>("output_file");
+    std::string input_file = p.get<std::string>("input_file");
+    std::string output_file = p.get<std::string>("output_file");
     if (output_file.size() == 0)
     {
         output_file = input_file + ".rev";
@@ -32,7 +28,7 @@ int main(int argc, char *argv[])
         return -1;
     }
 
-    string text = "";
+    std::string text = "";
     std::cout << "Loading: " << input_file << std::endl;
     stool::IO::load(input_file, text);
     stool::StringFunctions::reverse(text);

@@ -15,12 +15,12 @@ This implementation uses the suffix array and inverse suffix array.
 */
 class LZ77{
     public:
-    static void constructLPFUDArray(vector<uint64_t> &sa, vector<uint64_t> &lpfu, vector<uint64_t> &lpfd);
+    static void constructLPFUDArray(std::vector<uint64_t> &sa, std::vector<uint64_t> &lpfu, std::vector<uint64_t> &lpfd);
     // Computing the LZ77 factorization of the input text.    
-    static void compress(string &text, vector<uint64_t> &lpf, LZWriter &writer);
+    static void compress(std::string &text, std::vector<uint64_t> &lpf, LZWriter &writer);
     // Computing the LZ77 factorization of the input text.
-    static void compress(string &text, vector<uint64_t> &lpfu, vector<uint64_t> &lpfd, LZWriter &writer);
+    static void compress(std::string &text, std::vector<uint64_t> &lpfu, std::vector<uint64_t> &lpfd, LZWriter &writer);
     // Computing the LZ77 factorization of the input text.
-    static void compress(string &text, LZWriter &writer);
+    static void compress(std::string &text, LZWriter &writer);
 };
 }

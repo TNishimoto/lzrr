@@ -4,7 +4,6 @@
 #include <cassert>
 #include <unordered_map>
 
-using namespace std;
 
 namespace stool{
 /*
@@ -16,11 +15,11 @@ class LexParse
 {
   public:
     // Construct the lex-parse of the input text.
-    static void compress(string &text, vector<uint64_t> &sa, vector<uint64_t> &isa, LZWriter &writer);
-    static void compress(string &text, LZWriter &writer);
+    static void compress(std::string &text, std::vector<uint64_t> &sa, std::vector<uint64_t> &isa, LZWriter &writer);
+    static void compress(std::string &text, LZWriter &writer);
 
     // Construct the lex-r-parse of the input text.
-    static void compressR(string &text, vector<uint64_t> &sa, vector<uint64_t> &isa, LZWriter &writer);
-    static void compressR(string &text, LZWriter &writer);
+    static void compressR(std::string &text, std::vector<uint64_t> &sa, std::vector<uint64_t> &isa, LZWriter &writer);
+    static void compressR(std::string &text, LZWriter &writer);
 };
 }
