@@ -1,4 +1,7 @@
 #include "parse/lcpcomp2.hpp"
+#include "common/sa_lcp.hpp"
+#include "libdivsufsort/sa.hpp"
+
 //#include "lcpcomp.hpp"
 
 namespace stool{
@@ -28,7 +31,10 @@ MSFactor LCPCompData2::getFactor()
 }
 void LCPCompData2::initialize()
 {
-    stool::constructSA(this->text, this->sa, this->isa);
+    auto _sa = stool::construct_suffix_array(this->text);
+    this->sa.swap(_sa);
+    stool::constructISA(this->text, this->sa, this->isa);
+    //stool::constructSA(this->text, this->sa, this->isa);
     stool::constructLCP(this->text, this->lcpArr, this->sa, this->isa);
     PointCompare::lcpArr = &this->lcpArr;
     PointCompare::sa = &this->sa;

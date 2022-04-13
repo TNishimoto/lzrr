@@ -1,14 +1,15 @@
-#include "common/sa_lcp.hpp"
 #include <unordered_set>
 #include <cassert>
-#include <divsufsort.h>
-#include <divsufsort64.h>
+#include <iostream>
+#include <fstream>
+#include "common/sa_lcp.hpp"
 
 namespace stool
 {
     uint64_t intervalTotalCount = 0;
     uint64_t rlcpCounter = 0;
 
+    /*
     void constructSA(string &text, vector<uint64_t> &sa)
     {
 
@@ -24,6 +25,7 @@ namespace stool
         }
         free(SA);
     }
+    */
     void constructISA(string &text, vector<uint64_t> &sa, vector<uint64_t> &isa)
     {
         uint64_t n = text.size();
@@ -34,6 +36,7 @@ namespace stool
             isa[sa[i]] = i;
         }
     }
+    /*
     void constructSA(string &text, vector<uint64_t> &sa, vector<uint64_t> &isa)
     {
 
@@ -53,6 +56,7 @@ namespace stool
         free(SA);
         std::cout << "[END]" << std::endl;
     }
+    */
     void constructLCP(string &text, vector<uint64_t> &lcp, vector<uint64_t> &sa, vector<uint64_t> &isa)
     {
         lcp.resize(text.size(), 0);

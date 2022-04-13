@@ -1,4 +1,5 @@
 #include "parse/lz77.hpp"
+#include "libdivsufsort/sa.hpp"
 
 namespace stool{
 void LZ77::constructLPFUDArray(vector<uint64_t> &sa, vector<uint64_t> &lpfu, vector<uint64_t> &lpfd)
@@ -90,8 +91,10 @@ void LZ77::compress(string &text, vector<uint64_t> &lpfu, vector<uint64_t> &lpfd
 }
 void LZ77::compress(string &text, LZWriter &writer)
 {
-    vector<uint64_t> sa, lpfu, lpfd;
-    stool::constructSA(text, sa);
+    vector<uint64_t> lpfu, lpfd;
+    vector<uint64_t> sa = stool::construct_suffix_array(text);
+
+    //stool::constructSA(text, sa);
     std::cout << "constructing LPFUD...";
     constructLPFUDArray(sa, lpfu, lpfd);
     std::cout << "[END]" << std::endl;

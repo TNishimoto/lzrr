@@ -24,9 +24,11 @@ void LexParse::compress(string &text, vector<uint64_t> &sa, vector<uint64_t> &is
 }
 void LexParse::compress(string &text, LZWriter &writer)
 {
-    vector<uint64_t> sa;
+    vector<uint64_t> sa = stool::construct_suffix_array(text);
     vector<uint64_t> isa;
-    stool::constructSA(text, sa, isa);
+    stool::constructISA(text, sa, isa);
+
+    //stool::constructSA(text, sa, isa);
     LexParse::compress(text, sa, isa, writer);
     //MSFactor::toLZFactors(d.factors, output);
 }
@@ -63,9 +65,10 @@ void LexParse::compressR(string &text, vector<uint64_t> &sa, vector<uint64_t> &i
 void LexParse::compressR(string &text, LZWriter &writer)
 {
 
-    vector<uint64_t> sa;
+    vector<uint64_t> sa = stool::construct_suffix_array(text);
     vector<uint64_t> isa;
-    stool::constructSA(text, sa, isa);
+    stool::constructISA(text, sa, isa);
+
     LexParse::compressR(text, sa, isa, writer);
     //MSFactor::toLZFactors(d.factors, output);
 }

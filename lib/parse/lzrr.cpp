@@ -2,12 +2,16 @@
 #include "parse/lzrr.hpp"
 #include "debug/print.hpp"
 #include "common/lp.hpp"
-
+#include "libdivsufsort/sa.hpp"
 namespace stool
 {
 void LZRR::initialize(uint64_t _threshold, bool usingLCPArray, bool usingDependArray)
 {
-    constructSA(*this->text, this->sa, this->isa);
+    auto _sa = stool::construct_suffix_array(*this->text);
+    this->sa.swap(_sa);
+    stool::constructISA(*this->text, this->sa, this->isa);
+
+    //constructSA(*this->text, this->sa, this->isa);
 
     if (usingLCPArray)
     {

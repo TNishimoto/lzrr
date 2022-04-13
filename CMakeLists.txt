@@ -25,31 +25,24 @@ if (CMAKE_VERSION VERSION_LESS 3.21)
     endif()
 endif ()
 
-INCLUDE_DIRECTORIES(include)
-INCLUDE_DIRECTORIES(modules)
-FILE(GLOB SOURCES lib/*.cpp lib/common/*.cpp lib/parse/*.cpp lib/debug/*.cpp)
 
-#### Modules
-if(USELIB)
-#libdivsufsort directory is here.
-#Please modify it appropriately.
+# For libdivsufsort
+if(NOT TARGET libdivsufsort)
+add_subdirectory(module/libdivsufsort)
+endif()
 LINK_DIRECTORIES(~/lib)
 INCLUDE_DIRECTORIES(~/include)
-else()
-set(MYMOD_SOURCE_DIR ${CMAKE_SOURCE_DIR}/module)
-set(MYMOD_BINARY_DIR ${CMAKE_BINARY_DIR}/module)
-add_subdirectory(${MYMOD_SOURCE_DIR}/libdivsufsort ${MYMOD_BINARY_DIR}/libdivsufsort)
-include_directories(${MYMOD_BINARY_DIR}/libdivsufsort/include)
-endif()
 
+#####
 
+INCLUDE_DIRECTORIES(include)
+INCLUDE_DIRECTORIES(module)
+FILE(GLOB SOURCES lib/*.cpp lib/common/*.cpp lib/parse/*.cpp lib/debug/*.cpp)
+FILE(GLOB LIBDIVSUFOSRT module/libdivsufsort/sa.cpp)
 
-
-#LINK_DIRECTORIES(~/lib)
-#include_directories(~/include)
 
 if (PROJECT_IS_TOP_LEVEL)
-add_library(fn STATIC ${SOURCES})
+add_library(fn STATIC ${SOURCES} ${LIBDIVSUFOSRT})
 target_link_libraries(fn divsufsort divsufsort64)
 
 add_executable(compress.out compress_main.cpp)

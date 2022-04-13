@@ -159,7 +159,7 @@ int main(int argc, char *argv[])
     double charperms = (double)text.size() / elapsed;
     std::cout << "# The number of factors : " << writer.counter << std::endl;
     std::cout << "# Excecution time : " << elapsed << "ms";
-    std::cout << "# [" << charperms << "chars/ms]" << std::endl;
+    std::cout << " [" << charperms << "chars/ms]" << std::endl;
     std::cout << "# ==================================" << std::endl;
     std::cout << "\033[39m" << std::endl;
 }
