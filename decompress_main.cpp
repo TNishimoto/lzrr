@@ -1,8 +1,8 @@
 #include <cassert>
 #include <chrono>
-#include "cmdline.h"
-#include "io.h"
-#include "lz_factor.hpp"
+#include "common/cmdline.h"
+#include "common/io.h"
+#include "common/lz_factor.hpp"
 //#include "randstr.hpp"
 //#include "other/lzr.hpp"
 using namespace std;

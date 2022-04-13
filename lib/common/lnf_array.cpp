@@ -1,4 +1,4 @@
-#include "lnf_array.hpp"
+#include "common/lnf_array.hpp"
 
 namespace stool{
         LNFInfo::LNFInfo(SINDEX _begin, SINDEX _end, uint64_t upperLCP, uint64_t lowerLCP)

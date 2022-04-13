@@ -1,6 +1,6 @@
 #pragma once
 
-#include "lz_factor.hpp"
+#include "../common/lz_factor.hpp"
 #include <cassert>
 #include <unordered_map>
 

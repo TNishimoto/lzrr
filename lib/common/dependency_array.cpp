@@ -1,4 +1,4 @@
-#include "dependency_array.hpp"
+#include "common/dependency_array.hpp"
 #include <unordered_set>
 #include "debug/randstr.hpp"
 #include "debug/print.hpp"

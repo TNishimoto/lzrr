@@ -1,11 +1,11 @@
 #pragma once
 
-#include "lz_factor.hpp"
+#include "../common/lz_factor.hpp"
 #include <cassert>
-#include "union_find.hpp"
-#include "dependency_array.hpp"
-#include "lnf_array.hpp"
-#include "lp.hpp"
+#include "../common/union_find.hpp"
+#include "../common/dependency_array.hpp"
+#include "../common/lnf_array.hpp"
+#include "../common/lp.hpp"
 
 using namespace std;
 

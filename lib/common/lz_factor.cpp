@@ -1,7 +1,7 @@
-#include "lz_factor.hpp"
+#include "common/lz_factor.hpp"
 #include <algorithm>
 #include <cassert>
-#include "dependency_array.hpp"
+#include "common/dependency_array.hpp"
 
 namespace stool{
 LZFactor::LZFactor(uint64_t _reference, uint64_t _length)

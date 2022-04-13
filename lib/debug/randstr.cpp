@@ -6,7 +6,7 @@
 #include <exception>
 #include <algorithm>
 #include <fstream>
-#include "randstr.hpp"
+#include "debug/randstr.hpp"
 
 using namespace std;
 

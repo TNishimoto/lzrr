@@ -1,4 +1,4 @@
-#include "debug_lzrr.hpp"
+#include "debug/debug_lzrr.hpp"
 
 void transformVector(vector<uint64_t> &item, vector<uint64_t> &sa, vector<uint64_t> &output)
 {

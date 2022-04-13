@@ -1,4 +1,4 @@
-#include "lexparse.hpp"
+#include "parse/lexparse.hpp"
 
 namespace stool{
 void LexParse::compress(string &text, vector<uint64_t> &sa, vector<uint64_t> &isa, LZWriter &writer)

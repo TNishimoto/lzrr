@@ -1,4 +1,4 @@
-#include "lcpcomp2.hpp"
+#include "parse/lcpcomp2.hpp"
 //#include "lcpcomp.hpp"
 
 namespace stool{

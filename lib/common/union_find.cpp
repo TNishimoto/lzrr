@@ -1,5 +1,5 @@
-#include "union_find.hpp"
-#include "print.hpp"
+#include "common/union_find.hpp"
+#include "debug/print.hpp"
 
 //const uint64_t UnionFind::ROOT = UINT64_MAX;
 

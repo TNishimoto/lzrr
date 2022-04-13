@@ -1,7 +1,7 @@
 
-#include "lzrr.hpp"
+#include "parse/lzrr.hpp"
 #include "debug/print.hpp"
-#include "lp.hpp"
+#include "common/lp.hpp"
 
 namespace stool
 {

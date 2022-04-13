@@ -1,4 +1,4 @@
-#include "sa_lcp.hpp"
+#include "common/sa_lcp.hpp"
 #include <unordered_set>
 #include <cassert>
 #include <divsufsort.h>

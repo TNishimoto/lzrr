@@ -1,4 +1,4 @@
-#include "lz77.hpp"
+#include "parse/lz77.hpp"
 
 namespace stool{
 void LZ77::constructLPFUDArray(vector<uint64_t> &sa, vector<uint64_t> &lpfu, vector<uint64_t> &lpfd)
