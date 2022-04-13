@@ -13,6 +13,8 @@
 namespace stool
 {
 
+    namespace lzrr
+    {
 class Printer
 {
   public:
@@ -161,3 +163,4 @@ class Printer
 
 };
 } // namespace my
+}

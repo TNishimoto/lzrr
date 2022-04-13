@@ -5,6 +5,7 @@
 
 namespace stool
 {
+    namespace lzrr {
 void DependencyArrayManager::initialize(uint64_t size, bool usingDependIndexes)
 {
     this->uf.initialize(size);
@@ -198,3 +199,4 @@ uint64_t DependencyArrayManager::getLCPWR_Y(MSFactor &f)
     return len;
 }
 } // namespace stool
+}

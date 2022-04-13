@@ -6,6 +6,7 @@
 
 
 namespace stool{
+  namespace lzrr{
 /*
  LexParse Algorithm
  https://arxiv.org/abs/1803.09517
@@ -22,4 +23,5 @@ class LexParse
     static void compressR(std::string &text, std::vector<uint64_t> &sa, std::vector<uint64_t> &isa, LZWriter &writer);
     static void compressR(std::string &text, LZWriter &writer);
 };
+  }
 }

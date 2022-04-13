@@ -9,6 +9,9 @@
 
 
 namespace stool{
+    
+    namespace lzrr
+    {
     /*
     This is the data structure to emulate dependency array of the input text.
     */
@@ -46,4 +49,5 @@ class DependencyArrayManager{
     // Return the FakeLCPWR(f.index, f.reference).
     uint64_t getFakeLCPWR(MSFactor &f);
 };
+    }
 }

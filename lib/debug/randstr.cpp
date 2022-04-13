@@ -8,11 +8,10 @@
 #include <fstream>
 #include "debug/randstr.hpp"
 
-using namespace std;
 
-string createRandomString(int64_t len, int64_t alphabetSize, int64_t seed)
+std::string createRandomString(int64_t len, int64_t alphabetSize, int64_t seed)
 {
-    vector<char> alphabets;
+    std::vector<char> alphabets;
     alphabets.push_back('a');
     alphabets.push_back('b');
     alphabets.push_back('c');
@@ -31,14 +30,14 @@ string createRandomString(int64_t len, int64_t alphabetSize, int64_t seed)
     std::mt19937 mt(seed);
     std::uniform_int_distribution<> rand100(0, alphabetSize - 1); // [0, 99]
 
-    string r = "";
+    std::string r = "";
     for (int64_t i = 0; i < len; i++)
     {
         r.push_back(alphabets[rand100(mt)]);
     }
     return r;
 }
-bool addBit(vector<bool>& bits){
+bool addBit(std::vector<bool>& bits){
     uint64_t i=0;
     while(i < bits.size()){
         if(bits[i]){
@@ -51,8 +50,8 @@ bool addBit(vector<bool>& bits){
     }
     return i == bits.size();
 }
-string toString(vector<bool>& bits){
-    string s="";
+std::string toString(std::vector<bool>& bits){
+    std::string s="";
     s.resize(bits.size());
     for(uint64_t i=0;i<bits.size();i++){
         s[i] = bits[bits.size()-1-i] ? 'b' : 'a';
@@ -61,8 +60,8 @@ string toString(vector<bool>& bits){
 }
 
 
-void createStringPermutation(uint64_t len, vector<string>& output){
-    vector<bool> bits;
+void createStringPermutation(uint64_t len, std::vector<std::string>& output){
+    std::vector<bool> bits;
     bits.resize(len, false);
     //uint p=0;
     while(true){
@@ -73,11 +72,11 @@ void createStringPermutation(uint64_t len, vector<string>& output){
     }
 }
 
-string createDeBruijnSequence(uint64_t n){
-    string s = "";
+std::string createDeBruijnSequence(uint64_t n){
+    std::string s = "";
     uint64_t i=1;
     while(true){
-        vector<string> seq;
+        std::vector<std::string> seq;
         createStringPermutation(i, seq);
         for(uint64_t x=0;x<seq.size();x++){
             for(uint64_t y=0;y<seq[x].size();y++){
@@ -90,11 +89,11 @@ string createDeBruijnSequence(uint64_t n){
     }
     return s;
 }
-string createFibonacciWord(int length)
+std::string createFibonacciWord(int length)
 {
-	string p0 = "a";
-	string p1 = "b";
-	string p2 = p1 + p0;
+	std::string p0 = "a";
+	std::string p1 = "b";
+	std::string p2 = p1 + p0;
 	int t = 1;
 	while ((int)p2.size() < length)
 	{

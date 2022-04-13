@@ -9,6 +9,7 @@
 
 
 namespace stool{
+    namespace lzrr{
 /*
  LZRR factorization algorithm
 */
@@ -58,4 +59,5 @@ class LZRR
     }
 
 };
+}
 }

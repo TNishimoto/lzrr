@@ -10,12 +10,12 @@
 #include "parse/lexparse.hpp"
 
 
-void compress(std::string &text, std::string mode, uint64_t threshold, uint64_t lzrrMode, stool::LZWriter &writer)
+void compress(std::string &text, std::string mode, uint64_t threshold, uint64_t lzrrMode, stool::lzrr::LZWriter &writer)
 {
 
     if (mode == "lz")
     {
-        stool::LZ77::compress(text, writer);
+        stool::lzrr::LZ77::compress(text, writer);
     }
     else if (mode == "lzrr")
     {
@@ -33,17 +33,17 @@ void compress(std::string &text, std::string mode, uint64_t threshold, uint64_t 
         }
 
 
-        stool::LZRR::compress(text, threshold, usingLCPArray, usingDependArray, writer);
+        stool::lzrr::LZRR::compress(text, threshold, usingLCPArray, usingDependArray, writer);
     }
     else if (mode == "lex")
     {
-        stool::LexParse::compress(text, writer);
+        stool::lzrr::LexParse::compress(text, writer);
     }else if(mode == "lexr"){
-        stool::LexParse::compressR(text, writer);
+        stool::lzrr::LexParse::compressR(text, writer);
     }
     else if (mode == "lcp")
     {
-        stool::LCPCompData2::compress(text, writer);
+        stool::lzrr::LCPCompData2::compress(text, writer);
     }
     else
     {
@@ -57,10 +57,10 @@ void checkFile(std::string &text, std::string filename)
     std::string dtext;
     //std::cout << "decompose " << std::endl;
 
-    std::vector<stool::LZFactor> factors;
-    stool::IO::load(filename, factors);
+    std::vector<stool::lzrr::LZFactor> factors;
+    stool::lzrr::IO::load(filename, factors);
 
-    stool::LZFactor::decompress(factors, dtext);
+    stool::lzrr::LZFactor::decompress(factors, dtext);
     if (text.size() != dtext.size())
     {
         std::cout << "differrent size!" << std::endl;
@@ -122,14 +122,14 @@ int main(int argc, char *argv[])
     }
 
 
-    stool::LZWriter writer;
+    stool::lzrr::LZWriter writer;
     writer.open(outputFile);
 	//std::ofstream out(outputFile, ios::out | ios::binary);
 
     std::string text = "";
     std::cout << "Loading : " << inputFile << std::endl;
-    stool::IO::load(inputFile, text);
-    if(isReverse)stool::StringFunctions::reverse(text);
+    stool::lzrr::IO::load(inputFile, text);
+    if(isReverse)stool::lzrr::StringFunctions::reverse(text);
 
     //std::vector<LZFactor> factors;
 

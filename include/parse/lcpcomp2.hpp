@@ -7,7 +7,7 @@
 
 namespace stool
 {
-
+    namespace lzrr{
     class PointCompare
     {
     public:
@@ -62,3 +62,4 @@ Note that our implementation runs slowly.
     };
 } // namespace stool
 
+}

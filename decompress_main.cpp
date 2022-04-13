@@ -4,15 +4,15 @@
 #include "common/io.h"
 #include "common/lz_factor.hpp"
 
-void decompressWithDelimiter(std::vector<stool::LZFactor> &factors, std::string &output)
+void decompressWithDelimiter(std::vector<stool::lzrr::LZFactor> &factors, std::string &output)
 {
     std::string text;
-    stool::LZFactor::decompress(factors, text);
+    stool::lzrr::LZFactor::decompress(factors, text);
     output = "";
     uint64_t w = 0;
     for (uint64_t i = 0; i < factors.size(); i++)
     {
-        stool::LZFactor f = factors[i];
+        stool::lzrr::LZFactor f = factors[i];
         uint64_t len = f.getLength();
         output += text.substr(w, len);
         output.push_back('|');
@@ -50,19 +50,19 @@ int main(int argc, char *argv[])
 
     //decompress
     auto start = std::chrono::system_clock::now();
-    std::vector<stool::LZFactor> factors;
-    stool::IO::load(filename, factors);
+    std::vector<stool::lzrr::LZFactor> factors;
+    stool::lzrr::IO::load(filename, factors);
     std::string text="";
-    stool::LZFactor::decompress(factors, text);
+    stool::lzrr::LZFactor::decompress(factors, text);
     //std::cout << text << std::endl;
-     stool::IO::write(output_file, text);
+     stool::lzrr::IO::write(output_file, text);
     auto end = std::chrono::system_clock::now();
 
     if(e){
         std::string delimiterText = "";
         std::string factorText = "";
         decompressWithDelimiter(factors, delimiterText);
-        stool::LZFactor::toFactorString(factors, factorText);
+        stool::lzrr::LZFactor::toFactorString(factors, factorText);
         if(delimiterText.size() < 1000){
             std::cout << "Text     : " << text << std::endl;
             std::cout << "Factors  : " << delimiterText << std::endl;
@@ -72,7 +72,7 @@ int main(int argc, char *argv[])
 
 
         std::string log = text + "\n" + delimiterText + "\n" + factorText;
-        stool::IO::write(output_file, log);
+        stool::lzrr::IO::write(output_file, log);
     }
 
 

@@ -30,10 +30,10 @@ int main(int argc, char *argv[])
 
     std::string text = "";
     std::cout << "Loading: " << input_file << std::endl;
-    stool::IO::load(input_file, text);
-    stool::StringFunctions::reverse(text);
+    stool::lzrr::IO::load(input_file, text);
+    stool::lzrr::StringFunctions::reverse(text);
 
-    stool::IO::write(output_file, text);
+    stool::lzrr::IO::write(output_file, text);
     std::cout << "Wrote: " << output_file << std::endl;
 
 }
