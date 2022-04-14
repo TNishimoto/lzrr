@@ -4,7 +4,7 @@
 #include <list>
 #include <memory>
 #include <stack>
-#include "../common/sa_lcp.hpp"
+
 #include <set>
 #include "../common/lz_factor.hpp"
 

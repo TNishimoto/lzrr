@@ -1,6 +1,6 @@
 #include <cassert>
 #include <chrono>
-#include "common/cmdline.h"
+#include "stool/include/cmdline.h"
 #include "common/io.h"
 #include "common/lz_factor.hpp"
 

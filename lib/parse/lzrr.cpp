@@ -11,13 +11,15 @@ namespace stool
         {
             auto _sa = stool::construct_suffix_array(*this->text);
             this->sa.swap(_sa);
-            stool::lzrr::constructISA(*this->text, this->sa, this->isa);
+            auto _isa = stool::constructISA(*this->text, this->sa);
+            this->isa.swap(_isa);
 
             // constructSA(*this->text, this->sa, this->isa);
 
             if (usingLCPArray)
             {
-                stool::lzrr::constructLCP(*this->text, this->lcpArr, this->sa, this->isa);
+                auto _lcpArr = stool::constructLCP(*this->text, this->sa, this->isa);
+                this->lcpArr.swap(_lcpArr);
             }
 
             this->threshold = _threshold;
@@ -25,7 +27,8 @@ namespace stool
             {
                 if (this->lcpArr.size() == 0)
                 {
-                    stool::lzrr::constructLCP(*this->text, this->lcpArr, this->sa, this->isa);
+                    auto _lcpArr = stool::constructLCP(*this->text, this->sa, this->isa);
+                    this->lcpArr.swap(_lcpArr);
                 }
                 LNF::computeLNFArray(*this->text, this->sa, this->lcpArr, this->threshold, this->longestRightReferenceArr);
             }
@@ -72,7 +75,7 @@ namespace stool
                     else
                     {
                         TINDEX refIndex = this->longestRightReferenceArr[i];
-                        uint64_t lce = stool::lzrr::StringFunctions::LCE(*this->text, nowPosition, refIndex);
+                        uint64_t lce = stool::StringFunctions::LCE(*this->text, nowPosition, refIndex);
                         if (lce == 0)
                         {
                             f = MSFactor(nowPosition, (*this->text)[nowPosition]);

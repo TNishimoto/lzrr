@@ -1,6 +1,6 @@
 #include <cassert>
 #include <chrono>
-#include "common/cmdline.h"
+#include "stool/include/cmdline.h"
 #include "common/io.h"
 #include "common/lz_factor.hpp"
 #include "debug/randstr.hpp"
@@ -129,7 +129,7 @@ int main(int argc, char *argv[])
     std::string text = "";
     std::cout << "Loading : " << inputFile << std::endl;
     stool::lzrr::IO::load(inputFile, text);
-    if(isReverse)stool::lzrr::StringFunctions::reverse(text);
+    if(isReverse)stool::StringFunctions::reverse(text);
 
     //std::vector<LZFactor> factors;
 

@@ -33,6 +33,13 @@ endif()
 LINK_DIRECTORIES(~/lib)
 INCLUDE_DIRECTORIES(~/include)
 
+
+# For stool
+if(NOT TARGET stool)
+add_subdirectory(module/stool)
+endif()
+
+
 #####
 
 INCLUDE_DIRECTORIES(include)
@@ -43,7 +50,7 @@ FILE(GLOB LIBDIVSUFOSRT module/libdivsufsort/sa.cpp)
 
 if (PROJECT_IS_TOP_LEVEL)
 add_library(fn STATIC ${SOURCES} ${LIBDIVSUFOSRT})
-target_link_libraries(fn divsufsort divsufsort64)
+target_link_libraries(fn divsufsort divsufsort64 stool)
 
 add_executable(compress.out compress_main.cpp)
 add_executable(decompress.out decompress_main.cpp)

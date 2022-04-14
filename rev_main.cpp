@@ -1,9 +1,9 @@
 #include <cassert>
 #include <chrono>
-#include "common/cmdline.h"
+#include "stool/include/cmdline.h"
 #include "common/io.h"
 #include "common/lz_factor.hpp"
-
+#include "stool/include/string_functions.hpp"
 int main(int argc, char *argv[])
 {
     //argc parse
@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
     std::string text = "";
     std::cout << "Loading: " << input_file << std::endl;
     stool::lzrr::IO::load(input_file, text);
-    stool::lzrr::StringFunctions::reverse(text);
+    stool::StringFunctions::reverse(text);
 
     stool::lzrr::IO::write(output_file, text);
     std::cout << "Wrote: " << output_file << std::endl;

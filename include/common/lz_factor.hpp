@@ -5,7 +5,9 @@
 #include <list>
 #include <memory>
 #include <stack>
-#include "sa_lcp.hpp"
+#include "stool/include/sa_bwt_lcp_for_string.hpp"
+#include "stool/include/string_functions.hpp"
+
 //#include "print.hpp"
 #include <set>
 

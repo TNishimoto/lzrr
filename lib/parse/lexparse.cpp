@@ -1,5 +1,8 @@
 #include "parse/lexparse.hpp"
-
+#include "common/constants.hpp"
+#include "libdivsufsort/sa.hpp"
+#include "stool/include/sa_bwt_lcp_for_string.hpp"
+#include "stool/include/string_functions.hpp"
 namespace stool
 {
     namespace lzrr
@@ -11,7 +14,7 @@ namespace stool
             {
                 SINDEX j = isa[i];
                 MSFactor f;
-                uint64_t lce = j == 0 ? 0 : stool::lzrr::StringFunctions::LCE(text, sa[j], sa[j - 1]);
+                uint64_t lce = j == 0 ? 0 : stool::StringFunctions::LCE(text, sa[j], sa[j - 1]);
                 if (lce == 0)
                 {
                     f = MSFactor(i, text[i]);
@@ -28,8 +31,7 @@ namespace stool
         void LexParse::compress(std::string &text, LZWriter &writer)
         {
             std::vector<uint64_t> sa = stool::construct_suffix_array(text);
-            std::vector<uint64_t> isa;
-            stool::lzrr::constructISA(text, sa, isa);
+            std::vector<uint64_t> isa = stool::constructISA(text, sa);
 
             // stool::constructSA(text, sa, isa);
             LexParse::compress(text, sa, isa, writer);
@@ -50,7 +52,7 @@ namespace stool
 
                 SINDEX j = isa[i];
                 MSFactor f;
-                uint64_t lce = j == n - 1 ? 0 : stool::lzrr::StringFunctions::LCE(text, sa[j], sa[j + 1]);
+                uint64_t lce = j == n - 1 ? 0 : stool::StringFunctions::LCE(text, sa[j], sa[j + 1]);
                 if (lce == 0)
                 {
                     f = MSFactor(i, text[i]);
@@ -69,8 +71,7 @@ namespace stool
         {
 
             std::vector<uint64_t> sa = stool::construct_suffix_array(text);
-            std::vector<uint64_t> isa;
-            stool::lzrr::constructISA(text, sa, isa);
+            std::vector<uint64_t> isa = stool::constructISA(text, sa);
 
             LexParse::compressR(text, sa, isa, writer);
             // MSFactor::toLZFactors(d.factors, output);

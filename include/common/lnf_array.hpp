@@ -1,11 +1,10 @@
 #pragma once
-
-//#include "other/lzr.hpp"
-#include "lz_factor.hpp"
 #include <cassert>
-#include "union_find.hpp"
 #include <unordered_map>
-//#include "treap/dynamic_string.hpp"
+#include "common/constants.hpp"
+
+#include "lz_factor.hpp"
+#include "union_find.hpp"
 
 namespace stool
 {
