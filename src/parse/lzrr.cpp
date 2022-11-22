@@ -1,6 +1,6 @@
 
 #include "lzrr.hpp"
-#include "debug/print.hpp"
+#include "../debug/print.hpp"
 #include "../common/lp.hpp"
 
 namespace stool
