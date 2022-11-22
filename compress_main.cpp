@@ -1,18 +1,17 @@
 #include <cassert>
 #include <chrono>
-#include "cmdline.h"
-#include "io.h"
-#include "lz_factor.hpp"
-#include "randstr.hpp"
-#include "lzrr.hpp"
-#include "lz77.hpp"
+#include "src/common/cmdline.h"
+#include "src/common/io.h"
+#include "src/common/lz_factor.hpp"
+#include "src/debug/randstr.hpp"
+#include "src/parse/lzrr.hpp"
+#include "src/parse/lz77.hpp"
 
 //#include "other_lz.hpp"
 //#include "lzr.hpp"
-#include "lcpcomp.hpp"
-#include "lcpcomp2.hpp"
-
-#include "lexparse.hpp"
+#include "src/parse/lcpcomp.hpp"
+#include "src/parse/lcpcomp2.hpp"
+#include "src/parse/lexparse.hpp"
 
 using namespace std;
 

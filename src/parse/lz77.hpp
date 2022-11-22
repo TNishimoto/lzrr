@@ -4,9 +4,9 @@
 #include <list>
 #include <memory>
 #include <stack>
-#include "sa_lcp.hpp"
+#include "../common/sa_lcp.hpp"
 #include <set>
-#include "lz_factor.hpp"
+#include "../common/lz_factor.hpp"
 
 namespace stool{
 /*
