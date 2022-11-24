@@ -68,11 +68,14 @@ target_link_libraries(fn divsufsort divsufsort64 stool)
 add_executable(compress.out compress_main.cpp)
 add_executable(decompress.out decompress_main.cpp)
 add_executable(rev.out rev_main.cpp)
+add_executable(to_plain_factors.out to_plain_factors_main.cpp)
 
 
 target_link_libraries(compress.out fn)
 target_link_libraries(decompress.out fn)
 target_link_libraries(rev.out fn)
+target_link_libraries(to_plain_factors.out fn)
+
 endif()
 
 

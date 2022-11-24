@@ -134,7 +134,7 @@ int main(int argc, char *argv[])
     //std::vector<LZFactor> factors;
 
     auto start = std::chrono::system_clock::now();
-    compress(text, mode, 0, 0, writer);
+    compress(text, mode, UINT64_MAX, 0, writer);
     auto end = std::chrono::system_clock::now();
     double elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
 
