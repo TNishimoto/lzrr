@@ -1,16 +1,21 @@
 #include <cassert>
 #include <chrono>
-#include "stool/include/cmdline.h"
-#include "common/io.h"
-#include "common/lz_factor.hpp"
-#include "debug/randstr.hpp"
-#include "parse/lzrr.hpp"
-#include "parse/lz77.hpp"
-#include "parse/lcpcomp2.hpp"
-#include "parse/lexparse.hpp"
+#include "src/common/cmdline.h"
+#include "src/common/io.h"
+#include "src/common/lz_factor.hpp"
+#include "src/debug/randstr.hpp"
+#include "src/parse/lzrr.hpp"
+#include "src/parse/lz77.hpp"
 
+//#include "other_lz.hpp"
+//#include "lzr.hpp"
+#include "src/parse/lcpcomp.hpp"
+#include "src/parse/lcpcomp2.hpp"
+#include "src/parse/lexparse.hpp"
 
-void compress(std::string &text, std::string mode, uint64_t threshold, uint64_t lzrrMode, stool::lzrr::LZWriter &writer)
+using namespace std;
+
+void compress(string &text, string mode, uint64_t threshold, uint64_t lzrrMode, LZWriter &writer)
 {
 
     if (mode == "lz")

@@ -1,8 +1,12 @@
 #include <cassert>
 #include <chrono>
-#include "stool/include/cmdline.h"
-#include "common/io.h"
-#include "common/lz_factor.hpp"
+#include "src/common/cmdline.h"
+#include "src/common/io.h"
+#include "src/common/lz_factor.hpp"
+//#include "randstr.hpp"
+//#include "other/lzr.hpp"
+using namespace std;
+using namespace stool;
 
 void decompressWithDelimiter(std::vector<stool::lzrr::LZFactor> &factors, std::string &output)
 {

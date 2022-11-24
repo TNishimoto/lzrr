@@ -1,9 +1,13 @@
 #include <cassert>
 #include <chrono>
-#include "stool/include/cmdline.h"
-#include "common/io.h"
-#include "common/lz_factor.hpp"
-#include "stool/include/string_functions.hpp"
+#include "src/common/cmdline.h"
+#include "src/common/io.h"
+#include "src/common/lz_factor.hpp"
+//#include "randstr.hpp"
+//#include "other/lzr.hpp"
+using namespace std;
+using namespace stool;
+
 int main(int argc, char *argv[])
 {
     //argc parse
