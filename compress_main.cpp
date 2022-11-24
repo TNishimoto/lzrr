@@ -90,9 +90,9 @@ int main(int argc, char *argv[])
     p.add<std::string>("input_file", 'i', "input file name", true);
     p.add<std::string>("output_file", 'o', "output file name (the default output name is 'input_file.ext')", false, "");
     p.add<std::string>("mode", 'm', "compression algorithm ('lz' : LZ77, 'lex' : Lexicographic parse, 'lcp' : lcpcomp, 'lzrr' : LZRR)", false, "lzrr");
-    p.add<bool>("reverse", 'r', "use the reverse text of input text", false, false);
+    //p.add<bool>("reverse", 'r', "use the reverse text of input text", false, false);
     p.add<bool>("file_check", 'c', "check output file", false, false);
-    p.add<uint64_t>("threshold", 't', "threshold (used in LZRR)", false, UINT64_MAX);
+    //p.add<uint64_t>("threshold", 't', "threshold (used in LZRR)", false, UINT64_MAX);
     //p.add<uint64_t>("lzlrmode", 'z', "lzlrmode(LZRR)", false, 0);
 
     p.parse_check(argc, argv);
@@ -100,18 +100,15 @@ int main(int argc, char *argv[])
     std::string outputFile = p.get<std::string>("output_file");
     std::string mode = p.get<std::string>("mode");
     bool fileCheck = p.get<bool>("file_check");
-    bool isReverse = p.get<bool>("reverse");
-    uint64_t threshold = p.get<uint64_t>("threshold");
+    //bool isReverse = p.get<bool>("reverse");
+    //uint64_t threshold = p.get<uint64_t>("threshold");
     //uint64_t lzrr = p.get<uint64_t>("lzlrmode");
 
-    uint64_t lzrr = threshold == UINT64_MAX ? 0 : 1;
+    //uint64_t lzrr = threshold == UINT64_MAX ? 0 : 1;
     if (outputFile.size() == 0)
     {
-        if(mode == "lzrr" && threshold != UINT64_MAX){
-            outputFile = inputFile + (isReverse ? "_rev" : "") + "_t" + std::to_string(threshold) + "." + mode;
-        }else{
-            outputFile = inputFile + (isReverse ? "_rev" : "") + "." + mode;
-        }
+        outputFile = inputFile + "." + mode;
+
     }
 
     std::ifstream ifs(inputFile);
@@ -129,12 +126,11 @@ int main(int argc, char *argv[])
     std::string text = "";
     std::cout << "Loading : " << inputFile << std::endl;
     stool::lzrr::IO::load(inputFile, text);
-    if(isReverse)stool::StringFunctions::reverse(text);
 
     //std::vector<LZFactor> factors;
 
     auto start = std::chrono::system_clock::now();
-    compress(text, mode, threshold,lzrr, writer);
+    compress(text, mode, 0, 0, writer);
     auto end = std::chrono::system_clock::now();
     double elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
 
@@ -153,7 +149,7 @@ int main(int argc, char *argv[])
     std::cout << "# File : " << inputFile << std::endl;
     std::cout << "# Output : " << outputFile << std::endl;
     std::cout << "# Mode : " << mode << std::endl;
-    if(threshold != UINT64_MAX) std::cout << "Threshold : " << threshold << std::endl;
+    //if(threshold != UINT64_MAX) std::cout << "Threshold : " << threshold << std::endl;
     std::cout << "# The length of the input text : " << text.size() << std::endl;
     double charperms = (double)text.size() / elapsed;
     std::cout << "# The number of factors : " << writer.counter << std::endl;

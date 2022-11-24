@@ -4,6 +4,8 @@ mkdir ../build/output
 mkdir ../build/logs
 
 folderpath="../build/pizza"
+rev_folderpath="../build/rev_pizza"
+
 outputpath="../build/output"
 logpath="../build/logs"
 
@@ -19,7 +21,7 @@ done
 
 for file in ${filearr[@]}; do
 	echo "lzrr(rev) ${file}"
-    nohup /usr/bin/time -f "#lzrr(rev) ${file}, %e sec, %M KB" ../build/compress.out -i ${folderpath}/${file}.rev -o ${outputpath}/${file}.rev.lzrr -m lzrr >> ${logpath}/lzrr_rev_output.log
+    nohup /usr/bin/time -f "#lzrr(rev) ${file}, %e sec, %M KB" ../build/compress.out -i ${rev_folderpath}/${file}.rev -o ${outputpath}/${file}.rev.lzrr -m lzrr >> ${logpath}/lzrr_rev_output.log
 done
 
 
@@ -30,7 +32,7 @@ done
 
 for file in ${filearr[@]}; do
 	echo "lz77(rev) ${file}"
-    nohup /usr/bin/time -f "#lz77(rev) ${file}, %e sec, %M KB" ../build/compress.out -i ${folderpath}/${file}.rev -o ${outputpath}/${file}.rev.lz77 -m lz >> ${logpath}/lz77_rev_output.log
+    nohup /usr/bin/time -f "#lz77(rev) ${file}, %e sec, %M KB" ../build/compress.out -i ${rev_folderpath}/${file}.rev -o ${outputpath}/${file}.rev.lz77 -m lz >> ${logpath}/lz77_rev_output.log
 done
 
 
@@ -41,7 +43,7 @@ done
 
 for file in ${filearr[@]}; do
 	echo "lex(rev) ${file}"
-    nohup /usr/bin/time -f "#lex(rev) ${file}, %e sec, %M KB" ../build/compress.out -i ${folderpath}/${file}.rev -o ${outputpath}/${file}.rev.lex -m lex >> ${logpath}/lex_rev_output.log
+    nohup /usr/bin/time -f "#lex(rev) ${file}, %e sec, %M KB" ../build/compress.out -i ${rev_folderpath}/${file}.rev -o ${outputpath}/${file}.rev.lex -m lex >> ${logpath}/lex_rev_output.log
 done
 
 

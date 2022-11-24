@@ -33,15 +33,13 @@ So, to download all the necessary source codes, do the following:
 # executions
 
 ## compression
-    usage: ./compress.out --input_file=string [options] ...  
-    options:  
-    -i, --input_file     input file name (string)
-    -o, --output_file    output file name (the default output name is 'input_file.ext') (string [=])
-    -m, --mode           compression algorithm ('lz' : LZ77, 'lex' : Lexicographic parse, 'lcp' : lcpcomp, 'lzrr' : LZRR) (string [=lzrr])
-    -r, --reverse        use the reverse text of input text (bool [=0])
-    -c, --file_check     check output file (bool [=1])
-    -t, --threshold      threshold (used in LZRR) (unsigned long long [=18446744073709551615])
-    -?, --help           print this message
+    usage: ./compress.out --input_file=string [options] ... 
+    options:
+      -i, --input_file     input file name (string)
+      -o, --output_file    output file name (the default output name is 'input_file.ext') (string [=])
+      -m, --mode           compression algorithm ('lz' : LZ77, 'lex' : Lexicographic parse, 'lcp' : lcpcomp, 'lzrr' : LZRR) (string [=lzrr])
+      -c, --file_check     check output file (bool [=0])
+      -?, --help           print this message
 ## decompression
     usage: ./decompress.out --input_file=string [options] ...  
     options:  
