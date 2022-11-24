@@ -39,11 +39,12 @@ INCLUDE_DIRECTORIES(./include)
 FILE(GLOB SOURCES src/*.cpp src/common/*.cpp src/parse/*.cpp src/debug/*.cpp)
 
 #### Modules
-if(USELIB)
+#if(USELIB)
 #libdivsufsort directory is here.
 #Please modify it appropriately.
 LINK_DIRECTORIES(~/lib)
 INCLUDE_DIRECTORIES(~/include)
+#endif()
 
 
 # For stool
