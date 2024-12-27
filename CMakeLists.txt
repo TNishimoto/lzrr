@@ -1,5 +1,11 @@
 cmake_minimum_required(VERSION 2.8)
 
+project(lzrr CXX)
+
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
 if(CPP_STATIC)
 set(CMAKE_CXX_FLAGS "-std=c++11 -m64 -Wall -Wextra -static")
 else(CPP_STATIC)
@@ -13,6 +19,8 @@ endif()
 
 
 
+
+
 set(CMAKE_CXX_FLAGS_DEBUG  "-g -O0 -DDEBUG")
 set(CMAKE_CXX_FLAGS_RELEASE  "-O3 -DNDEBUG")
 #INCLUDE_DIRECTORIES(src)
@@ -20,10 +28,12 @@ set(CMAKE_CXX_FLAGS_RELEASE  "-O3 -DNDEBUG")
 #INCLUDE_DIRECTORIES(src/debug)
 #INCLUDE_DIRECTORIES(src/parse)
 
-LINK_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/lib)
+#LINK_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/lib)
 INCLUDE_DIRECTORIES(./include)
+INCLUDE_DIRECTORIES(module)
 
-FILE(GLOB SOURCES src/*.cpp src/common/*.cpp src/parse/*.cpp src/debug/*.cpp)
+FILE(GLOB SOURCES src/*.cpp src/common/*.cpp src/parse/*.cpp src/debug/*.cpp module/libdivsufsort/sa.cpp)
+#FILE(GLOB STOOL_SOURCES module/stool/lib/*.cpp module/libdivsufsort/sa.cpp)
 
 #### Modules
 if(USELIB)
@@ -50,10 +60,12 @@ target_link_libraries(fn divsufsort divsufsort64)
 add_executable(compress.out compress_main.cpp)
 add_executable(decompress.out decompress_main.cpp)
 add_executable(rev.out rev_main.cpp)
+add_executable(delta.out delta_main.cpp)
 
 
 target_link_libraries(compress.out fn)
 target_link_libraries(decompress.out fn)
 target_link_libraries(rev.out fn)
 
+target_link_libraries(delta.out fn)
 
