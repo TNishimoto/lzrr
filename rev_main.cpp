@@ -1,6 +1,7 @@
 #include <cassert>
 #include <chrono>
-#include "stool/include/cmdline.h"
+#include "stool/include/third_party/cmdline.h"
+
 #include "include/common/io.h"
 #include "include/common/lz_factor.hpp"
 //#include "randstr.hpp"

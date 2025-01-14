@@ -5,10 +5,10 @@
 #include <list>
 #include <memory>
 #include <stack>
-#include "stool/include/sa_bwt_lcp_for_string.hpp"
-#include "stool/include/string_functions.hpp"
 
-//#include "print.hpp"
+// #include "stool/include/light_stool.hpp"
+
+// #include "print.hpp"
 #include <set>
 
 namespace stool
@@ -25,8 +25,16 @@ namespace stool
             uint64_t reference;
             uint64_t length;
 
-            LZFactor(uint64_t _reference, uint64_t _length);
-            LZFactor(char c);
+            LZFactor(uint64_t _reference, uint64_t _length)
+            {
+                this->reference = _reference;
+                this->length = _length;
+            }
+            LZFactor(char c)
+            {
+                this->reference = (uint8_t)c;
+                this->length = UINT64_MAX;
+            }
             LZFactor()
             {
             }
@@ -41,10 +49,28 @@ namespace stool
                     return this->length;
                 }
             }
-            bool isChar();
-            char getChar();
+            bool isChar()
+            {
+                return this->length == UINT64_MAX;
+            }
+            char getChar()
+            {
+                return (char)this->reference;
+            }
 
-            std::string toString();
+            std::string toString()
+            {
+                if (!this->isChar())
+                {
+                    return "[" + std::to_string(reference) + ", " + std::to_string(length) + "]";
+                }
+                else
+                {
+                    std::string s = "";
+                    s += (char)this->reference;
+                    return s;
+                }
+            }
 
             static void toFactorString(std::vector<LZFactor> &input, std::string &output)
             {
@@ -58,7 +84,7 @@ namespace stool
                 }
             }
 
-            static void decompress(std::vector<LZFactor> &factors, std::string &output);
+            
             // static void decompress(std::vector<LZFactor> &factors, string &output, bool allowRightReference);
         };
         /*
@@ -149,7 +175,7 @@ namespace stool
                 }
             }
 
-            static void decompose(std::vector<MSFactor> &factors, std::string &output);
+            
             LZFactor toLZFactor()
             {
                 LZFactor f;
@@ -157,9 +183,42 @@ namespace stool
                 f.length = this->length;
                 return f;
             }
-            static void toLZFactors(std::vector<MSFactor> &factors, std::vector<LZFactor> &output);
+            static void toLZFactors(std::vector<MSFactor> &factors, std::vector<LZFactor> &output)
+            {
+                std::sort(factors.begin(), factors.end());
+                output.resize(factors.size());
 
-            static void toMSFactors(std::vector<LZFactor> &factors, std::vector<MSFactor> &output);
+                for (uint64_t i = 0; i < factors.size(); i++)
+                {
+                    if (factors[i].isChar())
+                    {
+                        output[i] = LZFactor(factors[i].getChar());
+                    }
+                    else
+                    {
+                        output[i] = LZFactor(factors[i].reference, factors[i].length);
+                    }
+                }
+            }
+
+            static void toMSFactors(std::vector<LZFactor> &factors, std::vector<MSFactor> &output)
+            {
+                output.resize(factors.size());
+                uint64_t pos = 0;
+                for (uint64_t i = 0; i < factors.size(); i++)
+                {
+                    if (factors[i].isChar())
+                    {
+                        output[i] = MSFactor(pos, factors[i].getChar());
+                        pos += 1;
+                    }
+                    else
+                    {
+                        output[i] = MSFactor(pos, factors[i].reference, factors[i].length);
+                        pos += factors[i].length;
+                    }
+                }
+            }
         };
 
         class LZWriter

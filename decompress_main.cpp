@@ -1,8 +1,10 @@
 #include <cassert>
 #include <chrono>
-#include "stool/include/cmdline.h"
+#include "stool/include/third_party/cmdline.h"
 #include "include/common/io.h"
 #include "include/common/lz_factor.hpp"
+#include "include/common/ms_decompressor.hpp"
+
 //#include "randstr.hpp"
 //#include "other/lzr.hpp"
 using namespace std;
@@ -11,7 +13,7 @@ using namespace stool;
 void decompressWithDelimiter(std::vector<stool::lzrr::LZFactor> &factors, std::string &output)
 {
     std::string text;
-    stool::lzrr::LZFactor::decompress(factors, text);
+    stool::lzrr::MSDecompressor::decompress_factors(factors, text);
     output = "";
     uint64_t w = 0;
     for (uint64_t i = 0; i < factors.size(); i++)
@@ -57,7 +59,7 @@ int main(int argc, char *argv[])
     std::vector<stool::lzrr::LZFactor> factors;
     stool::lzrr::IO::load(filename, factors);
     std::string text="";
-    stool::lzrr::LZFactor::decompress(factors, text);
+    stool::lzrr::MSDecompressor::decompress_factors(factors, text);
     //std::cout << text << std::endl;
      stool::lzrr::IO::write(output_file, text);
     auto end = std::chrono::system_clock::now();

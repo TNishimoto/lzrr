@@ -1,6 +1,6 @@
 #include <cassert>
 #include <chrono>
-#include "stool/include/cmdline.h"
+#include "stool/include/third_party/cmdline.h"
 #include "include/common/io.h"
 #include "include/common/lz_factor.hpp"
 #include "include/debug/randstr.hpp"
@@ -11,6 +11,8 @@
 //#include "lzr.hpp"
 #include "include/parse/lcpcomp2.hpp"
 #include "include/parse/lexparse.hpp"
+#include "include/common/ms_decompressor.hpp"
+
 
 using namespace std;
 
@@ -64,7 +66,7 @@ void checkFile(std::string &text, std::string filename)
     std::vector<stool::lzrr::LZFactor> factors;
     stool::lzrr::IO::load(filename, factors);
 
-    stool::lzrr::LZFactor::decompress(factors, dtext);
+    stool::lzrr::MSDecompressor::decompress_factors(factors, dtext);
     if (text.size() != dtext.size())
     {
         std::cout << "differrent size!" << std::endl;
