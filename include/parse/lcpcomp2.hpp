@@ -3,7 +3,7 @@
 #include "../common/lz_factor.hpp"
 #include "../common/constants.hpp"
 #include "libdivsufsort/sa.hpp"
-#include "stool/include/sa_bwt_lcp.hpp"
+#include "stool/include/strings/sa_bwt_lcp.hpp"
 
 #include <cassert>
 #include <unordered_map>
@@ -81,10 +81,10 @@ namespace stool
             {
                 auto _sa = libdivsufsort::construct_suffix_array(this->text);
                 this->sa.swap(_sa);
-                auto _isa = stool::constructISA(this->text, this->sa);
+                auto _isa = stool::construct_ISA(this->text, this->sa);
                 this->isa.swap(_isa);
                 // stool::constructSA(this->text, this->sa, this->isa);
-                auto _lcpArr = stool::constructLCP(this->text, this->sa, this->isa);
+                auto _lcpArr = stool::construct_LCP_array(this->text, this->sa, this->isa);
                 this->lcpArr.swap(_lcpArr);
                 PointCompare::lcpArr = &this->lcpArr;
                 PointCompare::sa = &this->sa;

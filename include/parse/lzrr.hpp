@@ -7,8 +7,8 @@
 #include "../common/lnf_array.hpp"
 #include "../common/lp.hpp"
 #include "libdivsufsort/sa.hpp"
-#include "stool/include/sa_bwt_lcp.hpp"
-#include "stool/include/string_functions.hpp"
+#include "stool/include/strings/sa_bwt_lcp.hpp"
+#include "stool/include/strings/string_functions.hpp"
 
 namespace stool{
     namespace lzrr{
@@ -36,14 +36,14 @@ class LZRR
     {
             auto _sa = libdivsufsort::construct_suffix_array(*this->text);
             this->sa.swap(_sa);
-            auto _isa = stool::constructISA(*this->text, this->sa);
+            auto _isa = stool::construct_ISA(*this->text, this->sa);
             this->isa.swap(_isa);
 
             // constructSA(*this->text, this->sa, this->isa);
 
             if (usingLCPArray)
             {
-                auto _lcpArr = stool::constructLCP(*this->text, this->sa, this->isa);
+                auto _lcpArr = stool::construct_LCP_array(*this->text, this->sa, this->isa);
                 this->lcpArr.swap(_lcpArr);
             }
 
@@ -52,7 +52,7 @@ class LZRR
             {
                 if (this->lcpArr.size() == 0)
                 {
-                    auto _lcpArr = stool::constructLCP(*this->text, this->sa, this->isa);
+                    auto _lcpArr = stool::construct_LCP_array(*this->text, this->sa, this->isa);
                     this->lcpArr.swap(_lcpArr);
                 }
                 LNF::computeLNFArray(*this->text, this->sa, this->lcpArr, this->threshold, this->longestRightReferenceArr);

@@ -40,7 +40,7 @@ class LexParse
     static void compress(std::string &text, LZWriter &writer)
     {
             std::vector<uint64_t> sa = libdivsufsort::construct_suffix_array(text);
-            std::vector<uint64_t> isa = stool::constructISA(text, sa);
+            std::vector<uint64_t> isa = stool::construct_ISA(text, sa);
 
             // stool::constructSA(text, sa, isa);
             LexParse::compress(text, sa, isa, writer);
@@ -81,7 +81,7 @@ class LexParse
     {
 
             std::vector<uint64_t> sa = libdivsufsort::construct_suffix_array(text);
-            std::vector<uint64_t> isa = stool::constructISA(text, sa);
+            std::vector<uint64_t> isa = stool::construct_ISA(text, sa);
 
             LexParse::compressR(text, sa, isa, writer);
             // MSFactor::toLZFactors(d.factors, output);
