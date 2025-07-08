@@ -159,6 +159,11 @@ So, to download all the necessary source codes, do the following:
 | para             | 429,265,758  | 2,204,983  | **2,200,787**  | 2,332,657  | 2,338,919  | 2,238,362  | 2,238,716  |
 
 
+
+## API Documentation (in preparation)
+
+[Doxygen](https://TNishimoto.github.io/lzrr/index.html)
+
 ## license
 
 This program is released under the MIT licence.

@@ -36,10 +36,10 @@ INCLUDE_DIRECTORIES(~/include)
 add_library(fn STATIC ${SOURCES})
 target_link_libraries(fn divsufsort divsufsort64)
 
-add_executable(compress.out compress_main.cpp)
-add_executable(decompress.out decompress_main.cpp)
+add_executable(compress.out main/compress_main.cpp)
+add_executable(decompress.out main/decompress_main.cpp)
 #add_executable(rev.out rev_main.cpp)
-add_executable(delta.out delta_main.cpp)
+add_executable(delta.out main/delta_main.cpp)
 
 
 target_link_libraries(compress.out fn)

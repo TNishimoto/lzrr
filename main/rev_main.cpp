@@ -2,8 +2,8 @@
 #include <chrono>
 #include "stool/include/third_party/cmdline.h"
 
-#include "include/common/io.h"
-#include "include/common/lz_factor.hpp"
+#include "../include/lzrr.hpp"
+
 //#include "randstr.hpp"
 //#include "other/lzr.hpp"
 using namespace std;

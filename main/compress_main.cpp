@@ -1,17 +1,7 @@
 #include <cassert>
 #include <chrono>
 #include "stool/include/third_party/cmdline.h"
-#include "include/common/io.h"
-#include "include/common/lz_factor.hpp"
-#include "include/debug/randstr.hpp"
-#include "include/parse/lzrr.hpp"
-#include "include/parse/lz77.hpp"
-
-//#include "other_lz.hpp"
-//#include "lzr.hpp"
-#include "include/parse/lcpcomp2.hpp"
-#include "include/parse/lexparse.hpp"
-#include "include/common/ms_decompressor.hpp"
+#include "../include/lzrr.hpp"
 
 
 using namespace std;
