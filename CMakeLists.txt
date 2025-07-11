@@ -34,8 +34,8 @@ INCLUDE_DIRECTORIES(module)
 #### Modules
 #libdivsufsort directory is here.
 #Please modify it appropriately.
-LINK_DIRECTORIES(~/lib)
-INCLUDE_DIRECTORIES(~/include)
+#LINK_DIRECTORIES(~/lib)
+#INCLUDE_DIRECTORIES(~/include)
 
 
 

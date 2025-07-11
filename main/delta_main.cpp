@@ -39,7 +39,7 @@ int main(int argc, char *argv[])
     std::vector<uint64_t> sa = libdivsufsort::construct_suffix_array(text);
     std::cout << "[END]" << std::endl;
 
-    std::vector<uint64_t> lcp_array = stool::construct_LCP_array(text, sa);
+    std::vector<uint64_t> lcp_array = stool::ArrayConstructor::construct_LCP_array(text, sa);
 
     std::cout << "Computing delta..." << std::flush;
     std::vector<uint64_t> distinct_substring_counter_array = stool::SubstringComplexityFunctions::construct_distinct_substring_counter_array(lcp_array);
@@ -78,7 +78,7 @@ int main(int argc, char *argv[])
     {
         std::cout << "Verification" << std::endl;
         std::vector<uint64_t> distinct_substring_counter_array2 = stool::SubstringComplexityFunctions::construct_distinct_substring_counter_array(text, sa);
-        bool b = stool::equal_check(distinct_substring_counter_array, distinct_substring_counter_array2);
+        bool b = stool::EqualChecker::equal_check(distinct_substring_counter_array, distinct_substring_counter_array2);
         if (b)
         {
             std::cout << "OK!" << std::endl;
