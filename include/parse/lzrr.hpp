@@ -7,8 +7,9 @@
 #include "../common/lnf_array.hpp"
 #include "../common/lp.hpp"
 #include "libdivsufsort/sa.hpp"
-#include "stool/include/strings/sa_bwt_lcp.hpp"
+#include "stool/include/strings/array_constructor.hpp"
 #include "stool/include/strings/string_functions.hpp"
+
 
 namespace stool{
     namespace lzrr{
@@ -36,7 +37,7 @@ class LZRR
     {
             auto _sa = libdivsufsort::construct_suffix_array(*this->text);
             this->sa.swap(_sa);
-            auto _isa = stool::ArrayConstructor::construct_ISA(*this->text, this->sa);
+            auto _isa = stool::ArrayConstructor::construct_ISA(this->sa);
             this->isa.swap(_isa);
 
             // constructSA(*this->text, this->sa, this->isa);
@@ -101,7 +102,7 @@ class LZRR
                     else
                     {
                         TINDEX refIndex = this->longestRightReferenceArr[i];
-                        uint64_t lce = stool::StringFunctions::LCE(*this->text, nowPosition, refIndex);
+                        uint64_t lce = stool::StringFunctions::lce(*this->text, nowPosition, refIndex);
                         if (lce == 0)
                         {
                             f = MSFactor(nowPosition, (*this->text)[nowPosition]);

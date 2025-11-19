@@ -3,11 +3,9 @@
 #include <random>
 #include <algorithm>
 #include <set>
-#include "stool/include/light_stool.hpp"
-
-#include "libdivsufsort/sa.hpp"
-
 #include <unordered_map>
+#include "../module/stool/include/all.hpp"
+#include "libdivsufsort/sa.hpp"
 
 // #include "esaxx/src/minimal_substrings/minimal_substring_tree.hpp"
 

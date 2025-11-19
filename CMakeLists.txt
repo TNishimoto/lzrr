@@ -20,13 +20,10 @@ endif()
 set(CMAKE_CXX_FLAGS_DEBUG  "-g -O0 -DDEBUG")
 set(CMAKE_CXX_FLAGS_RELEASE  "-O3 -DNDEBUG")
 
-#LINK_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/lib)
 if(NOT TARGET libdivsufsort)
 include_directories(${CMAKE_BINARY_DIR}/module/libdivsufsort/include)
 add_subdirectory(module/libdivsufsort)
 endif()
-
-INCLUDE_DIRECTORIES(include)
 INCLUDE_DIRECTORIES(module)
 
 #FILE(GLOB SOURCES module/libdivsufsort/sa.cpp)

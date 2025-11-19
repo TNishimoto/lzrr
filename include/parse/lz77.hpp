@@ -7,6 +7,7 @@
 
 #include <set>
 #include "../common/lz_factor.hpp"
+#include "libdivsufsort/sa.hpp"
 
 namespace stool
 {
@@ -78,7 +79,7 @@ namespace stool
                     {
                         // uint64_t max = text.size() - i;
                         uint64_t j = lpf[i];
-                        uint64_t lce = stool::StringFunctions::LCE(text, j, i);
+                        uint64_t lce = stool::StringFunctions::lce(text, j, i);
                         writer.write(LZFactor(j, lce));
                         i += lce;
                     }
@@ -90,8 +91,8 @@ namespace stool
                 uint64_t i = 0;
                 while (i < text.size())
                 {
-                    uint64_t lceu = lpfu[i] == UINT64_MAX ? 0 : stool::StringFunctions::LCE(text, i, lpfu[i]);
-                    uint64_t lced = lpfd[i] == UINT64_MAX ? 0 : stool::StringFunctions::LCE(text, i, lpfd[i]);
+                    uint64_t lceu = lpfu[i] == UINT64_MAX ? 0 : stool::StringFunctions::lce(text, i, lpfu[i]);
+                    uint64_t lced = lpfd[i] == UINT64_MAX ? 0 : stool::StringFunctions::lce(text, i, lpfd[i]);
                     uint64_t j = lceu > lced ? lpfu[i] : lpfd[i];
                     uint64_t lce = lceu > lced ? lceu : lced;
                     if (lce == 0)

@@ -3,6 +3,7 @@
 #include "../common/lz_factor.hpp"
 #include <cassert>
 #include <unordered_map>
+#include "libdivsufsort/sa.hpp"
 
 
 namespace stool{
@@ -23,7 +24,7 @@ class LexParse
             {
                 SINDEX j = isa[i];
                 MSFactor f;
-                uint64_t lce = j == 0 ? 0 : stool::StringFunctions::LCE(text, sa[j], sa[j - 1]);
+                uint64_t lce = j == 0 ? 0 : stool::StringFunctions::lce(text, sa[j], sa[j - 1]);
                 if (lce == 0)
                 {
                     f = MSFactor(i, text[i]);
@@ -40,7 +41,7 @@ class LexParse
     static void compress(std::string &text, LZWriter &writer)
     {
             std::vector<uint64_t> sa = libdivsufsort::construct_suffix_array(text);
-            std::vector<uint64_t> isa = stool::ArrayConstructor::construct_ISA(text, sa);
+            std::vector<uint64_t> isa = stool::ArrayConstructor::construct_ISA(sa);
 
             // stool::constructSA(text, sa, isa);
             LexParse::compress(text, sa, isa, writer);
@@ -62,7 +63,7 @@ class LexParse
 
                 SINDEX j = isa[i];
                 MSFactor f;
-                uint64_t lce = j == n - 1 ? 0 : stool::StringFunctions::LCE(text, sa[j], sa[j + 1]);
+                uint64_t lce = j == n - 1 ? 0 : stool::StringFunctions::lce(text, sa[j], sa[j + 1]);
                 if (lce == 0)
                 {
                     f = MSFactor(i, text[i]);
@@ -81,7 +82,7 @@ class LexParse
     {
 
             std::vector<uint64_t> sa = libdivsufsort::construct_suffix_array(text);
-            std::vector<uint64_t> isa = stool::ArrayConstructor::construct_ISA(text, sa);
+            std::vector<uint64_t> isa = stool::ArrayConstructor::construct_ISA(sa);
 
             LexParse::compressR(text, sa, isa, writer);
             // MSFactor::toLZFactors(d.factors, output);

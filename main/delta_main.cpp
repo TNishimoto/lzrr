@@ -3,8 +3,7 @@
 #include <random>
 #include <algorithm>
 #include <set>
-#include "stool/include/light_stool.hpp"
-
+#include "../module/stool/include/all.hpp"
 #include "libdivsufsort/sa.hpp"
 
 #include <unordered_map>
@@ -34,7 +33,7 @@ int main(int argc, char *argv[])
     bool verification = p.get<bool>("verification");
 
     std::vector<char> text;
-    stool::IO::load(input_filepath, text);
+    stool::FileReader::load_vector(input_filepath, text);
     std::cout << "Constructing Suffix Array" << std::flush;
     std::vector<uint64_t> sa = libdivsufsort::construct_suffix_array(text);
     std::cout << "[END]" << std::endl;

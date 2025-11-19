@@ -1,10 +1,10 @@
 #pragma once
 #include <cassert>
 #include <unordered_map>
-#include "common/constants.hpp"
+#include "./constants.hpp"
 
-#include "lz_factor.hpp"
-#include "union_find.hpp"
+#include "./lz_factor.hpp"
+#include "./union_find.hpp"
 
 namespace stool
 {

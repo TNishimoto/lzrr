@@ -6,10 +6,6 @@
 #include <memory>
 #include <stack>
 #include "dependency_array.hpp"
-
-// #include "stool/include/light_stool.hpp"
-
-// #include "print.hpp"
 #include <set>
 
 namespace stool

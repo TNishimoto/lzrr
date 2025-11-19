@@ -5,10 +5,6 @@
 #include <list>
 #include <memory>
 #include <stack>
-
-// #include "stool/include/light_stool.hpp"
-
-// #include "print.hpp"
 #include <set>
 
 namespace stool
