@@ -94,11 +94,11 @@ std::string createFibonacciWord(int length){
 	std::string p0 = "a";
 	std::string p1 = "b";
 	std::string p2 = p1 + p0;
-	int t = 1;
+	//int t = 1;
 	while ((int)p2.size() < length)
 	{
 		p2 = p1 + p0;
-		t++;
+		//t++;
 		p0 = p1;
 		p1 = p2;
 		//std::cout << p2.size() << std::endl;

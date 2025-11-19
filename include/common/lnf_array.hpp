@@ -99,7 +99,7 @@ namespace stool
         namespace LNF
         {
 
-            void computeLNFArray(std::string &text, std::vector<uint64_t> &sa, std::vector<uint64_t> &lcpArr, std::vector<LNFInfo> &output)
+            void computeLNFArray([[maybe_unused]]std::string &text, std::vector<uint64_t> &sa, std::vector<uint64_t> &lcpArr, std::vector<LNFInfo> &output)
             {
                 // std::vector<uint64_t> upperLNFIndexvec, lowerLNFIndexvec, upperLNFLCPvec, lowerLNFLCPvec, ;
                 uint64_t n = sa.size();
@@ -233,7 +233,7 @@ namespace stool
                     }
                 }
             }
-            void computeLNFArray(std::string &text, std::vector<uint64_t> &sa, std::vector<uint64_t> &lcpArr, uint64_t threshold, std::vector<TINDEX> &output)
+            void computeLNFArray([[maybe_unused]]std::string &text, std::vector<uint64_t> &sa, std::vector<uint64_t> &lcpArr, uint64_t threshold, std::vector<TINDEX> &output)
             {
                 uint64_t n = sa.size();
 

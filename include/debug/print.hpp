@@ -23,7 +23,7 @@ class Printer
 	{
 		std::string s = "";
 		s += "[";
-		int k = items.size();
+		//int k = items.size();
 		for (unsigned int i = 0; i < (int)items.size(); i++)
 		{
 			if(items[i] == UINT64_MAX){
@@ -42,7 +42,7 @@ class Printer
 	static void toIntegerString(std::vector<X> &items, std::string &result)
 	{
 		result += "[";
-		int k = items.size();
+		//int k = items.size();
 		for (unsigned int i = 0; i < (int)items.size(); i++)
 		{
 			result += std::to_string(items[i]);

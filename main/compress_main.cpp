@@ -1,10 +1,13 @@
 #include <cassert>
 #include <chrono>
 #include "stool/include/third_party/cmdline.h"
+#include "stool/include/debug/memory.hpp"
 #include "../include/lzrr.hpp"
 
 
 using namespace std;
+
+
 
 void compress(string &text, string mode, uint64_t threshold, uint64_t lzrrMode, stool::lzrr::LZWriter &writer)
 {
@@ -117,21 +120,15 @@ int main(int argc, char *argv[])
 
     stool::lzrr::LZWriter writer;
     writer.open(outputFile);
-	//std::ofstream out(outputFile, ios::out | ios::binary);
 
     std::string text = "";
     std::cout << "Loading : " << inputFile << std::endl;
     stool::lzrr::IO::load(inputFile, text);
 
-    //std::vector<LZFactor> factors;
-
     auto start = std::chrono::system_clock::now();
     compress(text, mode, UINT64_MAX, 0, writer);
     auto end = std::chrono::system_clock::now();
     double elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
-
-    //std::cout << "write : " << outputFile << std::endl;
-    //stool::IO::write(outputFile, factors);
     
     if (fileCheck)
     {
@@ -151,6 +148,7 @@ int main(int argc, char *argv[])
     std::cout << "# The number of factors : " << writer.counter << std::endl;
     std::cout << "# Excecution time : " << elapsed << "ms";
     std::cout << " [" << charperms << "chars/ms]" << std::endl;
+    stool::Memory::print_memory_usage();
     std::cout << "# ==================================" << std::endl;
     std::cout << "\033[39m" << std::endl;
 }

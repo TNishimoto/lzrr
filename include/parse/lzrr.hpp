@@ -72,7 +72,7 @@ class LZRR
     MSFactor getLZRRFactor(SINDEX i)
     {
             TINDEX x = this->sa[i];
-            std::pair<SINDEX, uint64_t> z = LZRR::getLongestOccurrence(i, this->lcpArr.size() == 0 ? NULL : &this->lcpArr, this->depper, this->sa, this->isa, *this->text);
+            std::pair<SINDEX, uint64_t> z = LZRR::getLongestOccurrence(i, this->lcpArr.size() == 0 ? NULL : &this->lcpArr, this->depper, this->sa, this->isa);
             return z.second == 0 ? MSFactor(x, (*this->text)[x]) : MSFactor(x, this->sa[z.first], z.second);
         }
     // Compute the LZRR factorization of the input text.
@@ -128,7 +128,8 @@ class LZRR
     If the factor does not have a reference then the value is the maximal value (UINT64_MAX).
     The second element : the length of the factor. 
     */
-    static std::pair<SINDEX, uint64_t> getLongestOccurrence(SINDEX i, std::vector<uint64_t> *lcpArr, DependencyArrayManager &depper, std::vector<uint64_t> &sa, std::vector<uint64_t> &isa, std::string &text)
+    static std::pair<SINDEX, uint64_t> getLongestOccurrence(SINDEX i, std::vector<uint64_t> *lcpArr, DependencyArrayManager &depper, 
+        std::vector<uint64_t> &sa, std::vector<uint64_t> &isa)
     {
             LPIterater lpi = LPIterater(i, &sa, &isa, lcpArr);
             // uint64_t n = sa.size();

@@ -17,7 +17,7 @@ namespace stool
         public:
             static inline std::vector<uint64_t> *lcpArr = nullptr;
             static inline std::vector<uint64_t> *sa = nullptr;
-            bool operator()(const uint64_t &pos1, const uint64_t &pos2)
+            bool operator()(const uint64_t &pos1, const uint64_t &pos2) const
             {
                 uint64_t lcp1 = (*PointCompare::lcpArr)[pos1];
                 uint64_t lcp2 = (*PointCompare::lcpArr)[pos2];
@@ -96,14 +96,14 @@ namespace stool
             }
             void compress(LZWriter &writer)
             {
-                uint64_t x = 0;
-                uint64_t count = 0;
+                //uint64_t x = 0;
+                //uint64_t count = 0;
 
                 while (true)
                 {
                     MSFactor f = this->getFactor();
-                    x += f.getLength();
-                    count++;
+                    //x += f.getLength();
+                    //count++;
 
                     // std::cout << f.toString();
 
