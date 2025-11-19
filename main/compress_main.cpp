@@ -2,7 +2,7 @@
 #include <chrono>
 #include "stool/include/third_party/cmdline.h"
 #include "stool/include/debug/memory.hpp"
-#include "../include/lzrr.hpp"
+#include "../include/all.hpp"
 
 
 using namespace std;

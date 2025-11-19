@@ -4,3 +4,6 @@
 [submodule "module/stool"]
 	path = module/stool
 	url = https://github.com/TNishimoto/stool.git
+[submodule "module/libsais"]
+	path = module/libsais
+	url = https://github.com/TNishimoto/libsais.git

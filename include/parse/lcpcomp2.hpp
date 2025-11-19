@@ -2,7 +2,7 @@
 
 #include "../common/lz_factor.hpp"
 #include "../common/constants.hpp"
-#include "libdivsufsort/sa.hpp"
+#include "../common/sa.hpp"
 #include "stool/include/strings/array_constructor.hpp"
 
 #include <cassert>
@@ -79,7 +79,7 @@ namespace stool
             }
             void initialize()
             {
-                auto _sa = libdivsufsort::construct_suffix_array(this->text);
+                auto _sa = stool::lzrr::SAConstructor::construct_suffix_array(this->text);
                 this->sa.swap(_sa);
                 auto _isa = stool::ArrayConstructor::construct_ISA(this->sa);
                 this->isa.swap(_isa);

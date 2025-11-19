@@ -1,5 +1,7 @@
+#pragma once
 #include "./common/io.h"
 #include "./common/lz_factor.hpp"
+#include "./common/sa.hpp"
 #include "./debug/randstr.hpp"
 #include "./parse/lzrr.hpp"
 #include "./parse/lz77.hpp"

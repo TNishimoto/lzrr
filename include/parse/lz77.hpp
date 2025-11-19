@@ -7,7 +7,7 @@
 
 #include <set>
 #include "../common/lz_factor.hpp"
-#include "libdivsufsort/sa.hpp"
+#include "../common/sa.hpp"
 
 namespace stool
 {
@@ -111,7 +111,7 @@ namespace stool
             static void compress(std::string &text, LZWriter &writer)
             {
                 std::vector<uint64_t> lpfu, lpfd;
-                std::vector<uint64_t> sa = libdivsufsort::construct_suffix_array(text);
+                std::vector<uint64_t> sa = stool::lzrr::SAConstructor::construct_suffix_array(text);
 
                 // stool::constructSA(text, sa);
                 std::cout << "constructing LPFUD...";

@@ -4,7 +4,7 @@
 #include <algorithm>
 #include <set>
 #include "../module/stool/include/all.hpp"
-#include "libdivsufsort/sa.hpp"
+#include "../include/common/sa.hpp"
 
 #include <unordered_map>
 
@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
     std::vector<char> text;
     stool::FileReader::load_vector(input_filepath, text);
     std::cout << "Constructing Suffix Array" << std::flush;
-    std::vector<uint64_t> sa = libdivsufsort::construct_suffix_array(text);
+    std::vector<uint64_t> sa = stool::lzrr::SAConstructor::construct_suffix_array(text);
     std::cout << "[END]" << std::endl;
 
     std::vector<uint64_t> lcp_array = stool::ArrayConstructor::construct_LCP_array(text, sa);

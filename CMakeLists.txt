@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.10)
 
 project(lzrr CXX)
 
@@ -20,31 +20,21 @@ endif()
 set(CMAKE_CXX_FLAGS_DEBUG  "-g -O0 -DDEBUG")
 set(CMAKE_CXX_FLAGS_RELEASE  "-O3 -DNDEBUG")
 
+add_subdirectory(module/libsais)
+
+
 if(NOT TARGET libdivsufsort)
 include_directories(${CMAKE_BINARY_DIR}/module/libdivsufsort/include)
 add_subdirectory(module/libdivsufsort)
 endif()
 INCLUDE_DIRECTORIES(module)
 
-#FILE(GLOB SOURCES module/libdivsufsort/sa.cpp)
-
-#### Modules
-#libdivsufsort directory is here.
-#Please modify it appropriately.
-#LINK_DIRECTORIES(~/lib)
-#INCLUDE_DIRECTORIES(~/include)
-
-
-
 add_executable(compress.out main/compress_main.cpp)
 add_executable(decompress.out main/decompress_main.cpp)
-#add_executable(rev.out rev_main.cpp)
 add_executable(delta.out main/delta_main.cpp)
 
 
-target_link_libraries(compress.out divsufsort divsufsort64)
-target_link_libraries(decompress.out divsufsort divsufsort64)
-#target_link_libraries(rev.out fn)
-
-target_link_libraries(delta.out divsufsort divsufsort64)
+target_link_libraries(compress.out divsufsort divsufsort64 libsais)
+target_link_libraries(decompress.out divsufsort divsufsort64 libsais)
+target_link_libraries(delta.out divsufsort divsufsort64 libsais)
 

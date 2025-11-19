@@ -3,7 +3,7 @@
 #include "../common/lz_factor.hpp"
 #include <cassert>
 #include <unordered_map>
-#include "libdivsufsort/sa.hpp"
+#include "../common/sa.hpp"
 
 
 namespace stool{
@@ -40,7 +40,7 @@ class LexParse
         }
     static void compress(std::string &text, LZWriter &writer)
     {
-            std::vector<uint64_t> sa = libdivsufsort::construct_suffix_array(text);
+            std::vector<uint64_t> sa = stool::lzrr::SAConstructor::construct_suffix_array(text);
             std::vector<uint64_t> isa = stool::ArrayConstructor::construct_ISA(sa);
 
             // stool::constructSA(text, sa, isa);
@@ -81,7 +81,7 @@ class LexParse
     static void compressR(std::string &text, LZWriter &writer)
     {
 
-            std::vector<uint64_t> sa = libdivsufsort::construct_suffix_array(text);
+            std::vector<uint64_t> sa = stool::lzrr::SAConstructor::construct_suffix_array(text);
             std::vector<uint64_t> isa = stool::ArrayConstructor::construct_ISA(sa);
 
             LexParse::compressR(text, sa, isa, writer);
