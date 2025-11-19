@@ -4,7 +4,7 @@
 #include <cassert>
 #include <vector>
 
-#include "libdivsufsort/sa.hpp"
+//#include "libdivsufsort/sa.hpp"
 #include "libsais/sa.hpp"
 
 namespace stool
@@ -14,10 +14,10 @@ namespace stool
         class SAConstructor{
             public:
             static std::vector<uint64_t> construct_suffix_array(const std::string &text){
-                return libdivsufsort::construct_suffix_array(text);
+                return libsais::construct_suffix_array(text);
             }
             static std::vector<uint64_t> construct_suffix_array(const std::vector<char> &text){
-                return libdivsufsort::construct_suffix_array(text);
+                return libsais::construct_suffix_array(text);
             }
 
         };

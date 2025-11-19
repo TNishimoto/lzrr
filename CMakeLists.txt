@@ -22,11 +22,10 @@ set(CMAKE_CXX_FLAGS_RELEASE  "-O3 -DNDEBUG")
 
 add_subdirectory(module/libsais)
 
-
-if(NOT TARGET libdivsufsort)
-include_directories(${CMAKE_BINARY_DIR}/module/libdivsufsort/include)
-add_subdirectory(module/libdivsufsort)
-endif()
+#if(NOT TARGET libdivsufsort)
+#include_directories(${CMAKE_BINARY_DIR}/module/libdivsufsort/include)
+#add_subdirectory(module/libdivsufsort)
+#endif()
 INCLUDE_DIRECTORIES(module)
 
 add_executable(compress.out main/compress_main.cpp)
@@ -34,7 +33,7 @@ add_executable(decompress.out main/decompress_main.cpp)
 add_executable(delta.out main/delta_main.cpp)
 
 
-target_link_libraries(compress.out divsufsort divsufsort64 libsais)
-target_link_libraries(decompress.out divsufsort divsufsort64 libsais)
-target_link_libraries(delta.out divsufsort divsufsort64 libsais)
+target_link_libraries(compress.out libsais)
+target_link_libraries(decompress.out libsais)
+target_link_libraries(delta.out libsais)
 

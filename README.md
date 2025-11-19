@@ -164,6 +164,10 @@ So, to download all the necessary source codes, do the following:
 
 [Doxygen](https://TNishimoto.github.io/lzrr/index.html)
 
+## Changelog
+
+- 25/11/19 Changed the library used for constructing the suffix array from libdivsufsort to libsais.
+
 ## license
 
 This program is released under the MIT licence.

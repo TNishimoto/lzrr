@@ -8,13 +8,11 @@ outputpath2="/Users/nishimoto/Documents/test_data/output/lzrr"
 outputpath3="/Users/nishimoto/Documents/test_data/output/lzrr"
 
 
-filearr=("einstein.de.txt" "world_leaders")
-
-#filearr=("einstein.de.txt" "einstein.en.txt" "world_leaders" "influenza" "kernel" "cere" "coreutils" "Escherichia_Coli" "para")
+filearr=("cere" "coreutils" "einstein.de.txt" "einstein.en.txt" "Escherichia_Coli" "influenza" "kernel" "para" "world_leaders")
 
 for file in ${filearr[@]}; do
 	echo "lzrr ${file}"
-    /usr/bin/time -l ${buildfolderpath}/compress.out -i ${inputfolderpath}/${file} -o ${outputpath1}/${file}.lzrr -m lzrr >> ${logfolderpath}/lzrr_output.log
+    /usr/bin/time -l  ${buildfolderpath}/compress.out -i ${inputfolderpath}/${file} -o ${outputpath1}/${file}.lzrr -m lzrr  >> ${logfolderpath}/lzrr_output2.log
 done
 
 #for file in ${filearr[@]}; do
